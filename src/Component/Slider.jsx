@@ -104,7 +104,7 @@ height:100%;
 `;
 const Image=styled.img`
 height:80%;
-
+width: 100%;
 
 `;
 

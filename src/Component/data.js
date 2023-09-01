@@ -1,4 +1,5 @@
 import imgsrc from '../Images/phone.gif';
+import boat from '../Images/boatring.avif';
 const slideData=[
     {
         id:1,
@@ -10,7 +11,7 @@ const slideData=[
     },
     {
         id:2,
-        img:"https://www.vijaysales.com/bucketdetails/vivo-v29e-5g/3022",
+        img:boat,
         title1:"MEDIUM",
         title2:"FESTIVAL",
         title3:"SALE",
