@@ -1,15 +1,29 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 import Slider from '../Component/Slider';
-import Navbar from "../Component/navbar";
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Navbar from "../Component/Navbar";
+// import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Categories from '../Component/Categories';
+import Earbudscategories from '../Component/Earbudscategories'
+import Laptopcategories from '../Component/Laptopcategories';
+import Smartcategories from '../Component/Smartcategories';
+import News from '../Component/Newsletter';
+import Footer from '../Component/Footer';
 
 function Home(){
     return(
         <div>
         <Navbar />
         <Slider />
-        </div>
+        <Categories />
+        <Laptopcategories /> 
+        <Earbudscategories />
+        <Smartcategories />
+        <News />
+        <Footer />
+      
+
+         </div>
     //    <BrowserRouter>
     //  
     //    <Routes>
