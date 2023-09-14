@@ -5,9 +5,16 @@
    
    
     }
+    .clearicon.clearicon{
+        font-size: 50px;
+  }
+
     @media screen and (max-width: 390px) {
         .cart.cart{
             font-size: 25px;
+        }
+        .clearicon.clearicon{
+            font-size: 23px;
         }
     }
     .buybtn{
@@ -38,4 +45,5 @@
      
         background-color: green;
     }
-  
+
+

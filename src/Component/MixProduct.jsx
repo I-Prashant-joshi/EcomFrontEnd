@@ -3,6 +3,9 @@ import { AllData } from "./ProductData";
 import { styled } from "styled-components";
 import Product from "./MixProductfetch";
 import ClearIcon from '@mui/icons-material/Clear';
+import {Mobile} from './Responsive';
+import '../Component/web.css'
+
 function MixProduct(){
 
     return(
@@ -53,7 +56,7 @@ function MixProduct(){
 
                         </SortProduct>
                   
-                <ClearIcon style={{color:"white",fontSize:"50px",marginRight:"50px"}}></ClearIcon>
+                <ClearIcon className="clearicon" style={{color:"white",marginRight:"50px"}}></ClearIcon>
             </Titlecontainer>
             
         <Container>
@@ -72,8 +75,7 @@ function MixProduct(){
 
 const Container=styled.div`
 display: flex;
-
- flex-wrap:wrap;
+flex-wrap:wrap;
 
 
 `;
@@ -83,15 +85,18 @@ display:flex;
 /* justify-content: center; */
  flex-wrap: wrap;
  border-radius: 20px;
+ 
+ 
+
+
 `;
 const Title=styled.h1`
 color:white;
 display: flex;
 align-items: center;
-
 margin-left: 50px;
-/* padding: 20px; */
-/* text-align: center; */
+${Mobile({fontSize:"15px"})};
+
 
 `;
 const Titlecontainer=styled.div`
@@ -99,6 +104,8 @@ const Titlecontainer=styled.div`
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    ${Mobile({fontSize:"15px",backgroundColor:"red"})};
+
 `;
 const FilterProduct=styled.div`
 
@@ -112,10 +119,13 @@ text-align: center;
 margin-left:15px;
 border-radius: 10px;
 font-size: 20px;
+${Mobile({padding:"0px",fontSize:"13px",width:"auto"})};
+
 `;
 const Option=styled.option`
 padding: 5px 15px;
 text-align: left;
+${Mobile({padding:"0px"})};
 
 `;
 

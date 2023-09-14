@@ -48,7 +48,7 @@ background-color: white;
  &:hover{
  height: 340px;
  width: 285px;
- box-shadow:  0 0 0 6px #bdb2b2;
+ box-shadow:0 0 0 6px #bdb2b2;
  font-size: 13px;
  
  }

@@ -43,8 +43,6 @@ background-color: white;
  transition : all 0.7s ease; 
  font-size: 14px;
  text-align: justify;
-
- 
  &:hover{
  height: 340px;
  width: 285px;
@@ -57,6 +55,7 @@ background-color: white;
 `;
 const Container=styled.div`
  flex:1;
+ overflow: hidden;
  margin: auto;
  background-color: #929592;
  ${Mobile({display:"flex",margin:"1px",overflow:"visible",height:"320px",width:"150px"})};

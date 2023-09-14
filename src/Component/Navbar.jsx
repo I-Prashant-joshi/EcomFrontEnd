@@ -5,6 +5,7 @@ import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {Mobile} from './Responsive';
+import {Tab} from './Responsive';
 
 
 const Container= styled.div`
@@ -21,6 +22,9 @@ background-color: black;
 color: rgb(223, 250, 223);
 
 ${Mobile({height:"30px",padding:"15px 10px"})};
+/* ${Tab({height:"30px",padding:"15px 10px"})}; */
+
+
 `;
 
 const Left= styled.div`
@@ -38,6 +42,8 @@ justify-content:center;
 font-weight:600;
 text-shadow:2px 2px red;
 ${Mobile({display:"none"})};
+${Tab({fontSize:"20px",textAlign:"center"})};
+
 `;
 const Right= styled.div`
 flex:1;
@@ -49,6 +55,8 @@ const Language= styled.div`
 cursor:pointer;
 font-size:25px;
 ${Mobile({display:"none"})};
+${Tab({display:"none"})};
+
 `;
 const SrchContainer= styled.div`
 border:1px solid black;
@@ -63,6 +71,8 @@ border:none;
     outline:none;
 }
 ${Mobile({width:"50px",borderRadius:"1px"})};
+${Tab({width:"100px"})};
+
 
 `;
 const Item=styled.div`
@@ -70,6 +80,8 @@ cursor:pointer;
 font-size:25px;
 margin:15px;
 ${Mobile({fontSize:"17px",margin:"5px"})};
+${Mobile({fontSize:"15px",margin:"7px"})};
+
 `;
 
 

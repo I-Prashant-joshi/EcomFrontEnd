@@ -7,6 +7,7 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShareIcon from '@mui/icons-material/Share';
+import {Mobile} from '../Component/Responsive';
 // import { Container } from '@mui/material';
 import '../Component/web.css'
 
@@ -16,9 +17,7 @@ function SingleProduct(){
         <Wrapper>
             <ImageContainer>
                     <Image src={laptop} />
-                    <Emi>Standard EMI From ₹ 5817</Emi>
-                   
-                   
+                    <Emi>Standard EMI From ₹ 5817</Emi>   
             </ImageContainer>
             <InfoContainer>
                 <Info>
@@ -75,6 +74,8 @@ const Emi=styled.div`
     font-weight: bold;
     font-size: 30px;
     box-sizing: border-box;
+    ${Mobile({fontSize:"18px",margin:"15px",backgroundColor:"lightgrey"})};
+    
     /* background-color: #80808039; */
 `;
 
@@ -83,6 +84,8 @@ const Wrapper=styled.div`
     justify-content: center;
     align-items: center;
     height:100vh;
+    ${Mobile({flexDirection:"column"})};
+
     
 `;
 const ImageContainer=styled.div`
@@ -91,6 +94,9 @@ const ImageContainer=styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
+   
+   ${Mobile({flex:"0",height:"200px",width:"90%"})};
+
     
     
     
@@ -98,23 +104,23 @@ const ImageContainer=styled.div`
 const InfoContainer=styled.div`
     flex:1;
     height:100%;
-
     box-sizing:border-box;
-    /* padding: 20px 100px; */
-    /* background-color: #53535536; */
+    ${Mobile({height:"10%"})};
+  
 `;
 const Info=styled.div`
 text-align: justify;
 box-sizing: border-box;
 padding: 50px 100px 20px;
-
-
+${Mobile({padding:"25px",overflow:"hidden"})};
 
 `;
 
 const Image=styled.img`
     height:65%;
     width:90%;
+    ${Mobile({  height:"82%",width:"90%"})};
+
     
 `;
 const Title=styled.p`
@@ -123,6 +129,7 @@ const Title=styled.p`
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: 10px;
     letter-spacing: 0.7px;
+    ${Mobile({fontSize:"15px"})};
    
     
 `;
@@ -135,6 +142,10 @@ const ButtonContainer=styled.div`
     box-sizing: border-box;
     padding: 20px;
     background-color: #80808039;
+
+ 
+  ${Mobile({width:"90%",margin:"10px",padding:"5px"})};
+
 `;
 const Button=styled.button`
 padding: 12px 25px;
@@ -157,6 +168,7 @@ const Pricetype=styled.div`
   margin-top: 50px;
   font-weight: 500;
   font-size: 20px;
+  ${Mobile({width:"55%"})};
  
 `;
 const Price=styled.div`
@@ -164,6 +176,8 @@ const Price=styled.div`
   width: 45%;
   margin-bottom: 30px;
   justify-content: space-between;
+  ${Mobile({width:"90%",marginTop:"10px"})};
+
 `;
 const Off=styled.div`
   font-size: 20px;
@@ -211,6 +225,7 @@ border-radius: 10px;
 height: 35px;
 width: 35px;
 background-color: #706e6e58;
+
 `;
 const FirstDiv=styled.div`
 display: flex;

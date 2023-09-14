@@ -3,6 +3,7 @@ import Navbar from "../Component/Navbar";
 import Footer from '../Component/Footer';
 import applemac13 from '../Images/applemac13.jpg';
 import AddIcon from '@mui/icons-material/Add';
+import {Mobile} from '../Component/Responsive';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 function Cart() {

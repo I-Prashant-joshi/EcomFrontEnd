@@ -28,7 +28,6 @@ const Wrapper=styled.div`
  border-radius: 50px;
  position: relative;  
  text-align: center;
-
  justify-content: space-around;
  top:-60px;
  box-shadow: 10xp 10px 10px red;
@@ -38,8 +37,6 @@ const Wrapper=styled.div`
  &:hover{
  height: 370px;
  width: 370px;
- ${Mobile({height:"350px",width:"350px"})};
-
  
  }
 

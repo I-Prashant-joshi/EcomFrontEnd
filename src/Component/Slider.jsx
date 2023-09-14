@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 // import 'animate.css';
-import {slideData} from "./data";
+import { slideData } from "./data";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import {Mobile} from './Responsive';
+import { Mobile } from './Responsive';
+import {Tab} from './Responsive';
 
 import '../Component/web.css';
 import { useState } from "react";
@@ -34,45 +35,47 @@ function Slider() {
 
                             <ImgContainer>
                                 <Image src={item.img}></Image>
-                               
-                                    </ImgContainer>
-                                    <InfoContainer color={item.color} >
-                                        <Title1>{item.title1} </Title1>
-                                        <Title2>{item.title2} </Title2>
-                                        <Title3>{item.title3}</Title3>
-                                        <h2>{item.title5}</h2>
-                                        <Title4 className="animate__animated animate__rubberBand animate__infinite	infinite">{item.title4} </Title4>
-                                        <Button>
-                                            ShopNow
-                                        </Button>
-                                    </InfoContainer>
-                                </Slide>
-                                ))
+
+                            </ImgContainer>
+                            <InfoContainer color={item.color} >
+                                <Title1>{item.title1} </Title1>
+                                <Title2>{item.title2} </Title2>
+                                <Title3>{item.title3}</Title3>
+                                <h2>{item.title5}</h2>
+                                <Title4 className="animate__animated animate__rubberBand animate__infinite	infinite">{item.title4} </Title4>
+                                <Button>
+                                    ShopNow
+                                </Button>
+                            </InfoContainer>
+                        </Slide>
+                    ))
                 }
 
 
 
-                            </Container>
+            </Container>
 
-                            <Arrow direction="right" onClick={() => handledirection("Right")}>
-                                <ArrowCircleRightIcon style={{ fontSize: "65px" }} />
-                            </Arrow>
-                        </Wrapper>
-                    );
+            <Arrow direction="right" onClick={() => handledirection("Right")}>
+                <ArrowCircleRightIcon style={{ fontSize: "65px" }} />
+            </Arrow>
+        </Wrapper>
+    );
 }
 
-                const Wrapper=styled.div`
+const Wrapper = styled.div`
                 width:100%;
                 height:100vh;
                 display:flex;
                 overflow:hidden;
                 background-color:lightgrey;
                 position:relative;
-                ${Mobile({display:"none"})};
+                ${Mobile({ display: "none" })};
+                /* ${Tab({width:"60%", height:"100vh"})}; */
+                
                 `;
 
 
-                const Arrow=styled.div`
+const Arrow = styled.div`
                 color:grey;
                 display:flex;
                 align-items:center;
@@ -85,14 +88,15 @@ function Slider() {
                 left:${(props) => props.direction === "left" && "15px"};
                 right:${(props) => props.direction === "right" && "15px"};
                 `;
-                const Container=styled.div`
+const Container = styled.div`
                 height:100%;
                 background-color:lightgrey;
                 display:flex;
                 transform:translateX(${(props) => props.slideindex * -100}vw);
                 transition: all 1.6s ease;
+
                 `;
-                const Slide=styled.div`
+const Slide = styled.div`
                 display:flex;
                 align-items:center;
                 height:100vh;
@@ -100,25 +104,25 @@ function Slider() {
                 background-color:${(props) => props.bg};
 
                 `;
-                const ImgContainer=styled.div`
+const ImgContainer = styled.div`
                 flex:1;
                 height:100%;
 
                 `;
-                const Image=styled.img`
+const Image = styled.img`
                 height:80%;
                 width: 100%;
 
                 `;
 
-                const InfoContainer=styled.div`
+const InfoContainer = styled.div`
                 flex:1;
-                color:${(props)=>props.color};
+                color:${(props) => props.color};
                 text-align:center;
                 height:100%;
                 `;
 
-                const Title1=styled.h1`
+const Title1 = styled.h1`
                 font-size:80px;
                 font-family: 'Rubik Moonrocks', cursive;
                 font-weight:300;
@@ -129,21 +133,21 @@ function Slider() {
 
                 opacity:0.7;
                 `;
-                const Title2=styled.h1`
+const Title2 = styled.h1`
                 font-size:70px;
                 font-family: 'Rubik Moonrocks', cursive;
                 font-weight:300;
                 opacity:0.75;
 
                 `;
-                const Title3=styled.h1`
+const Title3 = styled.h1`
                 font-size:60px;
                 font-weight:300;
                 opacity:0.7;
                 font-family: 'Rubik Moonrocks', cursive;
 
                 `;
-                const Title4=styled.h1`
+const Title4 = styled.h1`
                 font-size:50px;
                 font-weight:300;
                 opacity:0.7;
@@ -152,7 +156,7 @@ function Slider() {
                 border-radius:200px;
 
                 `;
-                const Button=styled.button`
+const Button = styled.button`
                 height:60px;
                 border-radius:20px;
                 width:150px;
@@ -170,5 +174,5 @@ function Slider() {
                 `;
 
 
-                export default Slider;
+export default Slider;
 

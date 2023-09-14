@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import {Mobile} from './Responsive';
 
 
 function Product({value}){
