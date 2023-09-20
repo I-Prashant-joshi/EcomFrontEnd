@@ -8,7 +8,9 @@ import {Tab} from './Responsive';
 
 import '../Component/web.css';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Slider() {
+    const navigate=useNavigate();
     const [index, setIndex] = useState(0);
     function handledirection(direction) {
         console.log(direction);
@@ -43,7 +45,7 @@ function Slider() {
                                 <Title3>{item.title3}</Title3>
                                 <h2>{item.title5}</h2>
                                 <Title4 className="animate__animated animate__rubberBand animate__infinite	infinite">{item.title4} </Title4>
-                                <Button>
+                                <Button onClick={()=>{navigate("/ProductList")}}>
                                     ShopNow
                                 </Button>
                             </InfoContainer>

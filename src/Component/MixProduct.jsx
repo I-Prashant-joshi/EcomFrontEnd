@@ -5,9 +5,10 @@ import Product from "./MixProductfetch";
 import ClearIcon from '@mui/icons-material/Clear';
 import {Mobile} from './Responsive';
 import '../Component/web.css'
+import { useNavigate } from "react-router-dom";
 
 function MixProduct(){
-
+const navigate=useNavigate();
     return(
         <Wrapper>
             <Titlecontainer> 
@@ -56,7 +57,7 @@ function MixProduct(){
 
                         </SortProduct>
                   
-                <ClearIcon className="clearicon" style={{color:"white",marginRight:"50px"}}></ClearIcon>
+                <ClearIcon className="clearicon" onClick={()=>{navigate("/")}} style={{color:"white",marginRight:"50px"}}></ClearIcon>
             </Titlecontainer>
             
         <Container>

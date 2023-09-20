@@ -1,11 +1,12 @@
 import {styled} from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search'; 
-import '../Component/web.css';
+// import '../Component/web.css';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {Mobile} from './Responsive';
 import {Tab} from './Responsive';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const Container= styled.div`
@@ -86,6 +87,7 @@ ${Mobile({fontSize:"15px",margin:"7px"})};
 
 
 function Navbar(){
+    const navigate=useNavigate();
     return(
        <Container>
         <Wrapper>
@@ -102,16 +104,17 @@ function Navbar(){
                  <h3>ELECTRO HUB</h3>
             </Center>
             <Right>
-                 <Item>
-                    Register
+                 <Item onClick={()=>{navigate("/Register")}}>
+                 Register
+                 {/* <NavLink to="/Register">Register</NavLink>    */}
                  </Item>
-                 <Item>
+                 <Item onClick={()=>{navigate("/Login")}}>
                    Login
                  </Item>
                 <Item >
                 <IconButton aria-label="cart">
                         <StyledBadge badgeContent={6} >
-                            <ShoppingCartIcon className='cart'/>
+                            <ShoppingCartIcon className='cart' onClick={()=>{navigate("/Cart")}} />
                         </StyledBadge>
                 </IconButton>
                 </Item>

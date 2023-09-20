@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
+import { useNavigate } from "react-router-dom";
 
 
 function Smart({value}){
-
+const navigate=useNavigate();
     return(
-        
-
+  
            <Container>
-             <Wrapper>
+             <Wrapper onClick={()=>{navigate("/SingleProduct")}}>
                 <Image src={value.img} />
                <Info>
                     {value.title}

@@ -1,7 +1,6 @@
 import React from 'react';
 // import ReactDOM from 'react-dom/client';
 import Slider from '../Component/Slider';
-import Navbar from "../Component/Navbar";
 // import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Categories from '../Component/Categories';
 import Earbudscategories from '../Component/Earbudscategories'
@@ -13,7 +12,6 @@ import Footer from '../Component/Footer';
 function Home(){
     return(
         <div>
-        <Navbar />
         <Slider />
         <Categories />
         <Laptopcategories /> 

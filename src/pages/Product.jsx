@@ -1,4 +1,4 @@
-import Navbar from '../Component/Navbar'
+
 import Footer from "../Component/Footer";
 import { styled } from "styled-components";
 import laptop from '../Images/laptop.jpg';
@@ -13,7 +13,6 @@ import '../Component/web.css'
 
 function SingleProduct(){
     return(<Container>
-        <Navbar /> 
         <Wrapper>
             <ImageContainer>
                     <Image src={laptop} />
