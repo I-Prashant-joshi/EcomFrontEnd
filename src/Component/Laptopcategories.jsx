@@ -29,7 +29,7 @@ ${Mobile({flexDirection:"row",flexWrap:"wrap"})};
 `;
 const Wrapper=styled.div`
 margin:5% 0;
-
+${Mobile({margin:"50px 0"})};
 `;
 const Title=styled.h1`
 color:white;

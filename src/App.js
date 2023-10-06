@@ -9,33 +9,34 @@ import Navbar from "../src/Component/Navbar";
 
 import Login from './pages/Login';
 import {BrowserRouter,Routes,Route}from 'react-router-dom'
+
 import Protected from './Component/Protected';
+// import { useEffect, useState } from 'react';
 
 
 function App() {
+
   return (
+   
+    
       <BrowserRouter>
         <Navbar />
       <Routes>
         <Route  path='/' element={<Protected Component={Home}  />} />
-        <Route  path='/ProductList' element={<Protected Component={ProductList}  />} />
-        <Route  path='/SingleProduct' element={<Protected Component={SingleProduct}  />} />
-        <Route  path='/Cart' element={<Protected Component={Cart}  />} />
+        <Route  path='/products/:category' element={<Protected Component={ProductList}  />} />
+        <Route  path='/product/:id' element={<Protected Component={SingleProduct}  />} />
+        <Route  path='/Cart ' element={<Protected Component={Cart}  />} />
         <Route  path='/Login' element={<Protected Component={Login}  />} />
-        <Route  path='/Register' element={<Register />} />
+        <Route  path='/Register' element= { <Register />} />
       </Routes>
       </BrowserRouter>
 
 
-    // <Home />
-  //  <ProductList />
-  // <SingleProduct />
-  // <Register />
-  // <Cart />
-  // <Login />
+  
 
 
   );
+  
 }
 
 export default App;

@@ -78,29 +78,36 @@ export const categories=[
     {
         id:1,
         img:apple,
-        title:"SmartPhone"
+        title:"SmartPhone",
+        cat:"SmartPhone"
     },
     {
         id:2,
         img:lapcatg,
-        title:"Laptop"
+        title:"Laptop",
+        cat:"Laptop"
+
     },
     {
         id:3,
         img:tv,
-        title:"TV"
+        title:"TV",
+        cat:"Tv"
+
     },
     {
         id:4,
         img:headphone,
-        title:"HeadPhone"
+        title:"HeadPhone",
+        cat:"HeadPhone"
+
     }
 
 ]
 
 export const lapycatgo=[
     {
-        id:1,
+        id:"651fff1d443eb629a4e514d7",
         img:Applelaptop,
         title:"SmartPhone Apple 2020 MacBook Air M1 Chip MGN63HN/A Laptop (8GB RAM/ 256GB SSD) ",
         vsp:"VSP",
@@ -111,7 +118,7 @@ export const lapycatgo=[
         tag:"No Cost EMI | Standard EMI From ₹ 3,975"
     },
     {
-        id:2,
+        id:"651ffe6f443eb629a4e514d2",
         img:applemac,
         title:" Apple MacBook Pro 13 M2 chip MNEH3HN/A Laptop (8GB RAM/256 GB SSD) ",
         vsp:"VSP",
@@ -123,7 +130,7 @@ export const lapycatgo=[
 
     },
     {
-        id:3,
+        id:"651fff90443eb629a4e514d9",
         img:applemac13,
         title:" Apple MacBook Pro 14 M2 Pro Chip MPHE3HN/A (16GB RAM / 512 GB SSD) ",
         vsp:"VSP",
@@ -134,7 +141,7 @@ export const lapycatgo=[
         tag:"No Cost EMI | Standard EMI From ₹ 9018"
     },
     {
-        id:4,
+        id:"651ffff7443eb629a4e514db",
         img:dell,
         title:" Dell Inspiron 3511 D560801WIN9B Laptop (11th Gen core i3 / 8GB RAM/ 512GB SSD) ",
         vsp:"VSP",
@@ -173,7 +180,7 @@ export const lapycatgo=[
 
 export const earbuds=[
     {
-        id:1,
+        id:"652001c3443eb629a4e514dd",
         img:earbuds1,
         title:" boAt Nirvana Ion Bluetooth Wireless Earbuds with Crystal Bionic Sound ,120HRS Playback ",
         vsp:"VSP",
@@ -184,7 +191,7 @@ export const earbuds=[
         tag:" Standard EMI From ₹ 3,975"
     },
     {
-        id:2,
+        id:"6520024b443eb629a4e514df",
         img:earbuds2,
         title:" Apple AirPods Pro (2nd Generation) with MagSafe Charging Case ",
         vsp:"VSP",
@@ -196,7 +203,7 @@ export const earbuds=[
 
     },
     {
-        id:3,
+        id:"652002bd443eb629a4e514e1",
         img:earbuds3,
         title:" boAt Airdopes 148 RTL True Wireless Earbuds with IPX4 Water Resistant, 8mm Drivers",
         vsp:"VSP",

@@ -1,9 +1,9 @@
 import React from "react";
- import { styled } from "styled-components";
+//  import { styled } from "styled-components";
 import img from '../Images/back2.avif';
 
 
-import {Avatar,Container ,Button, Checkbox, Grid, Paper, Stack, TextField, Typography} from '@mui/material';
+import {Avatar ,Button, Checkbox, Grid, Paper, Stack, TextField, Typography} from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 function Register(){
@@ -31,7 +31,7 @@ function Register(){
     }}}}}}/>
 
                         
-                        <Checkbox /> I agree On <a href="#">Terms&Condition</a>
+                        <Checkbox /> I agree On Terms&Condition
                         <Stack direction="row" spacing={40}>
                             <Button variant="contained" color="error">Cancel</Button>
                             <Button variant="contained" color="success">Register</Button>

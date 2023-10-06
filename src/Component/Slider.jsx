@@ -68,6 +68,7 @@ const Wrapper = styled.div`
                 width:100%;
                 height:100vh;
                 display:flex;
+                top:50px;
                 overflow:hidden;
                 background-color:lightgrey;
                 position:relative;
@@ -87,8 +88,8 @@ const Arrow = styled.div`
                 bottom:0;
                 margin:auto;
                 z-index:999;
-                left:${(props) => props.direction === "left" && "15px"};
-                right:${(props) => props.direction === "right" && "15px"};
+                left:${(props)=>props.direction === "left" && "15px"};
+                right:${(props)=>props.direction === "right" && "15px"};
                 `;
 const Container = styled.div`
                 height:100%;

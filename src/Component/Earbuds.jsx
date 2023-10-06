@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 function Earbuds({value}){
@@ -10,7 +10,8 @@ function Earbuds({value}){
         
 
            <Container>
-             <Wrapper  onClick={()=>{navigate("/SingleProduct")}}>
+            <NavLink to={`product/${value.id}`}>
+             <Wrapper>
                 <Image src={value.img} />
                <Info>
                     {value.title}
@@ -30,6 +31,7 @@ function Earbuds({value}){
                 {value.tag}
                </Tag>
              </Wrapper>
+             </NavLink>
            </Container> 
     )
 

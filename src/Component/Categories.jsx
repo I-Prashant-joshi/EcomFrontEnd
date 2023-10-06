@@ -22,7 +22,7 @@ function Categories(){
 
 const Container=styled.div`
 display: flex;
-${Mobile({flexDirection:"row",flexWrap:"wrap",margin:"15px "})};
+${Mobile({flexDirection:"row",flexWrap:"wrap",margin:"15px",top:"100px"})};
 
 `;
 

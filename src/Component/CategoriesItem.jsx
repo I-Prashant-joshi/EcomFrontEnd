@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
+import { Link } from "react-router-dom";
 
 function CategoriesItem({value}){
 
@@ -7,6 +8,7 @@ function CategoriesItem({value}){
         
 
            <Container>
+            <Link to={`/products/${value.cat}`}>
              <Wrapper>
                 <Image src={value.img} />
                 <Info>
@@ -15,6 +17,7 @@ function CategoriesItem({value}){
                 </Info>
                
              </Wrapper>
+             </Link>
            </Container> 
     )
 
@@ -40,12 +43,12 @@ const Wrapper=styled.div`
  
  }
 
-${Mobile({height:"150px",width:"150px", top:"0px",borderRadius:"20px",margin:"1px auto"})};
+${Mobile({height:"150px",width:"150px", top:"50px",borderRadius:"20px",margin:"1px auto"})};
 
 `;
 const Container=styled.div`
  flex:1;
-
+ 
  /* background-color: #f39a9a; */
 `;
 const Image=styled.img`

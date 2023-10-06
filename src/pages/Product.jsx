@@ -9,35 +9,66 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ShareIcon from '@mui/icons-material/Share';
 import {Mobile} from '../Component/Responsive';
 // import { Container } from '@mui/material';
-import '../Component/web.css'
+import '../Component/web.css';
+import { publicrequest } from "../RequestMethod";
+import { useLocation} from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 function SingleProduct(){
+    const location=useLocation();
+    const pathid=location.pathname.split("/")[2]; 
+    const [product,setProduct]=useState([]);
+    console.log('product', product);
+    const {color} = JSON.parse(localStorage.getItem('productData'))
+    console.log("colr", color);
+   
+    const getProduct=async()=>{
+        const res= await axios.get(`http://localhost:5000/api/product/find/${pathid}`);
+        setProduct(res.data);
+        
+        localStorage.setItem('productData', JSON.stringify(res.data))
+    };
+
+    useEffect(()=>{
+            getProduct();
+    },[])
+    
+
     return(<Container>
         <Wrapper>
             <ImageContainer>
-                    <Image src={laptop} />
-                    <Emi>Standard EMI From ₹ 5817</Emi>   
+                    <Image src={product.img} />
+                    <Emi>{product.tag}</Emi>   
             </ImageContainer>
             <InfoContainer>
                 <Info>
                    <Title>
-                   Apple MacBook Pro 13 M2 chip MNEH3HN/A Laptop (8GB RAM/256 GB SSD/13.3-inch (33.74 cm) Display/8-core CPU/10-core GPU /macOS/Space Grey)
+                   {product.title}
                    </Title>
                    <Pricetype>
-                    <Vsp>VSP</Vsp> <Mrp>MRP</Mrp>
+                    <Vsp>{product.vsp}</Vsp> <Mrp>{product.mrp}</Mrp>
                    </Pricetype>
                    <Price>
-                    <Vsp style={{fontSize:"25px"}}>₹ 1,19,990</Vsp> <Mrp style={{fontSize:"18px",textDecoration:"line-through"}}>₹ 1,29,990</Mrp>
+                    <Vsp style={{fontSize:"25px"}}>₹ {product.vsprice}</Vsp> <Mrp style={{fontSize:"18px",textDecoration:"line-through"}}>₹ {product.mrprice}</Mrp>
                     <Off>8% off</Off>
                     
                    </Price>
                    
                    
                    <Title>Select Color</Title>
+                   {
+                    console.log("colormap")
+                   }
                    <ColorType>
-                    <Color bg="silver"></Color>
-                    <Color bg="white"></Color>
-                    <Color bg="black"></Color>
+
+                   {
+                    color.map((item)=>(
+                        <Color bg={item}></Color>
+                    ))
+                   }
+                   
                     </ColorType>
                     <Title>Add More</Title>
                     <Count>
@@ -82,6 +113,7 @@ const Wrapper=styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 80px;
     height:100vh;
     ${Mobile({flexDirection:"column"})};
 
@@ -96,9 +128,6 @@ const ImageContainer=styled.div`
    
    ${Mobile({flex:"0",height:"200px",width:"90%"})};
 
-    
-    
-    
 `;
 const InfoContainer=styled.div`
     flex:1;
@@ -116,6 +145,7 @@ ${Mobile({padding:"25px",overflow:"hidden"})};
 `;
 
 const Image=styled.img`
+    margin-top: 30px;
     height:65%;
     width:90%;
     ${Mobile({  height:"82%",width:"90%"})};

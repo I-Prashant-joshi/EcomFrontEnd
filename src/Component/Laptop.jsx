@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Laptop({value}){
 const navigate=useNavigate();
@@ -8,7 +8,8 @@ const navigate=useNavigate();
         
 
            <Container >
-             <Wrapper onClick={()=>{navigate("/SingleProduct")}}>
+            <NavLink to={`product/${value.id}`}>
+             <Wrapper >
                 <Image src={value.img} />
                <Info>
                     {value.title}
@@ -28,6 +29,7 @@ const navigate=useNavigate();
                 {value.tag}
                </Tag>
              </Wrapper>
+             </NavLink>
            </Container> 
     )
 
