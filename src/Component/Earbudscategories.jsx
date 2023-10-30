@@ -11,8 +11,8 @@ function Earbudscategories(){
             <Title>TUNE INTO PERFECTION</Title>
         <Container>
                 {
-                    earbuds.map((item)=>(
-                         <Earbuds value={item} />
+                    earbuds.map((item, index)=>(
+                         <Earbuds key={index} value={item} />
                         )
                              
                     )

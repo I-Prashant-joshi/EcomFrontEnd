@@ -20,9 +20,9 @@ import smart6 from '../Images/smart6.jpg';
 
 export const AllData=[
     {
-        id:1,
+        id:"651fff1d443eb629a4e514d7",
         img:Applelaptop,
-        title:"SmartPhone Apple 2020 MacBook Air M1 Chip MGN63HN/A Laptop (8GB RAM/ 256GB SSD) ",
+        title:" Apple 2020 MacBook Air M1 Chip MGN63HN/A Laptop (8GB RAM/ 256GB SSD) ",
         vsp:"VSP",
         price:" ₹ 81,990",
         MRP:"MRP",
@@ -42,7 +42,7 @@ export const AllData=[
         tag:" Standard EMI From ₹ 3550"
     },
     {
-        id:3,
+        id:"652001c3443eb629a4e514dd",
         img:earbuds1,
         title:" boAt Nirvana Ion Bluetooth Wireless Earbuds with Crystal Bionic Sound ,120HRS Playback ",
         vsp:"VSP",
@@ -53,7 +53,7 @@ export const AllData=[
         tag:" Standard EMI From ₹ 3,975"
     },
     {
-        id:4,
+        id:"651fff90443eb629a4e514d9",
         img:smart1,
         title:"Apple iPhone 14 (128 GB Storage, Starlight) ",
         vsp:"VSP",
@@ -64,7 +64,7 @@ export const AllData=[
         tag:" Standard EMI From ₹ 3,442"
     },
     {
-        id:5,
+        id:"6520024b443eb629a4e514df",
         img:earbuds2,
         title:" Apple AirPods Pro (2nd Generation) with MagSafe Charging Case ",
         vsp:"VSP",
@@ -76,7 +76,7 @@ export const AllData=[
 
     },
     {
-        id:6,
+        id:"651ffe6f443eb629a4e514d2",
         img:applemac,
         
         title:" Apple MacBook Pro 13 M2 chip MNEH3HN/A Laptop (8GB RAM/256 GB SSD) ",
@@ -88,6 +88,7 @@ export const AllData=[
         tag:"No Cost EMI | Standard EMI From ₹ 5817"
 
     },
+    // oneplus mac 14   boat 163 oneplus burd2 boagt 525 hp 14 asusvivabok
     {
         id:7,
         img:smart2,
@@ -101,7 +102,7 @@ export const AllData=[
 
     },
     {
-        id:8,
+        id:"652002bd443eb629a4e514e1",
         img:earbuds3,
         title:" boAt Airdopes 148 RTL True Wireless Earbuds with IPX4 Water Resistant, 8mm Drivers",
         vsp:"VSP",
@@ -147,7 +148,7 @@ export const AllData=[
      
     },
     {
-        id:12,
+        id:"651ffff7443eb629a4e514db",
         img:dell,
         title:" Dell Inspiron 3511 D560801WIN9B Laptop (11th Gen core i3 / 8GB RAM/ 512GB SSD) ",
         

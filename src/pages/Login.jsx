@@ -11,12 +11,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import { Loginapi } from '../Redux/apicall';
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Copyright(props) {
-    
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -35,41 +36,59 @@ const defaultTheme = createTheme();
 
 export default function Login() {
 
-    const Navigate=useNavigate();
-    // useEffect(()=>{
-    //     const login=localStorage.getItem("login");
-    //     if(login){
-    //             Navigate("/");
-    //     }
-    // },[])
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const { isFetching, error, currentUser } = useSelector((state) => state.user);
+  
+  console.log("data in current user ", currentUser);
+
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email=data.get("email");
-    const pass=data.get("password");
-    
+    const username = data.get("username");
+    const password = data.get("password");
 
-    if(email==="Admin" && pass==="Admin" )
-        
- {console.log(email);
-        localStorage.setItem("login",true);
-        Navigate("/");  
+    if (!username || !password) {
+      alert("Please fill the detail");
     }
-  
+
+    else {
+      const logindata = await Loginapi(dispatch, { username, password });
+      console.log("logindata===>", logindata);
+      if (logindata === "invalidaUser") {
+        alert("Username is not valid")
+
+      }
+      else if (logindata === "valid") {
+        localStorage.setItem("login", true);
+        localStorage.setItem("username", username);
+        Navigate("/");
+      }
     
-    
+      else{
+        alert("Password is not valid")
+
+      }
+
+    }
+
+
+
+
   };
 
 
 
-    
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs"  >
         <CssBaseline />
-        <Box 
+        <Box
           sx={{
             marginTop: 10,
             display: 'flex',
@@ -83,15 +102,14 @@ export default function Login() {
           <Typography component="h1" variant="h4">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" autoComplete='off' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="username"
+              name="username"
               autoFocus
             />
             <TextField
@@ -113,7 +131,8 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-             >
+
+            >
               Login
             </Button>
             <Grid container>
@@ -123,7 +142,7 @@ export default function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link sx={{ cursor: "pointer" }} variant="body2" onClick={() => Navigate("/Register")}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

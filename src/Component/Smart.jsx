@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 function Smart({value}){
@@ -8,7 +8,9 @@ const navigate=useNavigate();
     return(
   
            <Container>
-             <Wrapper onClick={()=>{navigate("/SingleProduct")}}>
+            
+             <NavLink to={`products/smartphone/product/${value.id}`}>
+             <Wrapper >
                 <Image src={value.img} />
                <Info>
                     {value.title}
@@ -28,6 +30,7 @@ const navigate=useNavigate();
                 {value.tag}
                </Tag>
              </Wrapper>
+             </NavLink>
            </Container> 
     )
 

@@ -45,7 +45,7 @@ function Slider() {
                                 <Title3>{item.title3}</Title3>
                                 <h2>{item.title5}</h2>
                                 <Title4 className="animate__animated animate__rubberBand animate__infinite	infinite">{item.title4} </Title4>
-                                <Button onClick={()=>{navigate("/ProductList")}}>
+                                <Button onClick={()=>{navigate("/products/")}}>
                                     ShopNow
                                 </Button>
                             </InfoContainer>

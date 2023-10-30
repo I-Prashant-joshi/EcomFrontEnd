@@ -10,7 +10,7 @@ function Earbuds({value}){
         
 
            <Container>
-            <NavLink to={`product/${value.id}`}>
+            <NavLink to={`products/earbuds/product/${value.id}`}>
              <Wrapper>
                 <Image src={value.img} />
                <Info>

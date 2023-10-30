@@ -1,14 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 //  import { styled } from "styled-components";
 import img from '../Images/back2.avif';
-
-
 import {Avatar ,Button, Checkbox, Grid, Paper, Stack, TextField, Typography} from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-
+import { Registerapi } from "../Redux/apicall";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function Register(){
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
+    const[username,setUsername]=useState("");
+    const[email,setEmail]=useState("");
+    const[password,setPassword]=useState("");
+   
+    const handleSubmit=async(e)=>{
+            e.preventDefault();
+            const data={
+                username,email,password
+            }
+            console.log(data);
+        if(!username || !email || !password)
+        {
+            alert("Please fill all data");
+        }    
+        else{
+
+          const registerData =await Registerapi(dispatch,data);
+            console.log("data from register",registerData);
+          if(registerData)
+            {
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            navigate("/Login")
+            }
+           
+        }
+       
+    }
+           
+    const handleCancel=(e)=>{
+        e.preventDefault();
+  
+        setUsername("");
+        setEmail("");
+        setPassword("");
+      
+   }
     return(
-        <Grid  style={{backgroundImage:`url(${img})`,margin:"0px auto",backgroundRepeat:"no-repeat",backgroundSize:"cover"}} >
+        <Grid  style={{backgroundImage:`url(${img})`,height:"85vh",margin:"100px auto",backgroundRepeat:"no-repeat",backgroundSize:"cover"}} >
         <Grid sx={{margin:"0px auto"}} >
                <Paper align="center" elevation={10} style={{borderRadius:"20px",backgroundColor:"rgba(249, 247, 245, 0.15)",backdropFilter:"blur(3px)",color:"white" , padding:"35px",width:500,margin:"10px auto"}}>
                     <Avatar sx={{bgcolor:"Orange",margin:"10px 0"}}>
@@ -20,21 +60,19 @@ function Register(){
                     <Typography sx={{margin:"20px 0 40px 0"}}>
                         " Please fill this Form"
                     </Typography>
-                        <form >
-                        <TextField id="FName" label="FirstName" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color: 'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}/>
-                        <TextField id="LName" label="LastName" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0", "& .MuiInputLabel-root": {color: 'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}} />
-                        <TextField id="mail" label="Mail" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color: 'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}/>
-                        <TextField type="password" id="Pass" label="Password" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color: 'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}} />
-                        <TextField type="Confirm" id="Pass" label="Confirm" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color: 'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white",  "& .MuiOutlinedInput-root:hover": {
-      "& > fieldset": {
-        color:"white"
-    }}}}}}/>
+                        <form onSubmit={handleSubmit} autoComplete="off" >
+                        <TextField id="username" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} label="username" variant="outlined"   fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}  />
+                      
+                        <TextField  id="email"  value={email} label="email" onChange={(e)=>setEmail(e.target.value)} variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}/>
+
+                        <TextField type="password" value={password} id="Pass" onChange={(e)=>setPassword(e.target.value)} label="Password" variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}} />
+                      
 
                         
                         <Checkbox /> I agree On Terms&Condition
                         <Stack direction="row" spacing={40}>
-                            <Button variant="contained" color="error">Cancel</Button>
-                            <Button variant="contained" color="success">Register</Button>
+                            <Button type="Cancel" variant="contained" color="error" onClick={handleCancel} >Cancel</Button>
+                            <Button type="submit" variant="contained" color="success">Register</Button>
                         </Stack>
 
                         </form>

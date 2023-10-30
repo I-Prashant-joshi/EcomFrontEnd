@@ -1,27 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 // import {Mobile} from './Responsive';
 
 
 function Product({value}){
 const navigate=useNavigate();
+
     return(
         
 
            <Container>
-             <Wrapper onClick={()=>{navigate("/SingleProduct")}}>
+            <NavLink to={`product/${value._id}`}>
+             <Wrapper >
                 <Image src={value.img} />
                <Info>
                     {value.title}
 
                 <Price>
-                {value.vsp}
-                {value.price}
+               <PriceItem> {value.vsp}</PriceItem> 
+               <PriceItem style={{color:"green"}}> { value.vsprice}</PriceItem> 
+
+                
                </Price>
                <Mrp>
-                <Item>{value.MRP}</Item>
-                <Item>{value.mrp}</Item>
-                <Item>{value.off}</Item>
+               <Item>{value.mrp}</Item>
+                <Item style={{color:"red"}}>{value.mrprice}</Item>
+                <Item style={{color:"green"}}>{value.off}</Item>
                </Mrp>
                
                </Info>
@@ -29,6 +33,7 @@ const navigate=useNavigate();
                 {value.tag}
                </Tag>
              </Wrapper>
+             </NavLink>
            </Container> 
     )
 
@@ -41,7 +46,7 @@ const Wrapper=styled.div`
 background-color: white;
  position: relative;  
  z-index: 0;
- display: block;
+ /* display: block;  */
  transition : all 0.7s ease; 
  font-size: 14px;
  text-align: justify;
@@ -54,7 +59,7 @@ const Container=styled.div`
  width: 310px;
  border-radius: 20px;
  overflow: hidden;
- margin:50px  auto;
+ margin:50px auto;
  background-color: #929592;
  transition: all 0.5s ease;
  &:hover{
@@ -63,6 +68,7 @@ const Container=styled.div`
     /* height: 360px; */
     width: 315px;
  }
+
 
 `;
 const Image=styled.img`
@@ -80,11 +86,16 @@ font-weight: bold;
 /* font-size: 14px; */
 `;
 const Price=styled.div`
-color:red;
+color:#080808;
 font-size: 13px;
 margin: 8px 0;
-
+display: flex;
 `;
+const PriceItem=styled.div`
+margin-right: 13px ;
+/* color:green; */
+`;
+
 const Mrp=styled.div`
 display: flex;
 font-size: 13px;

@@ -34,7 +34,8 @@ export const slideData=[
         title3:"RING",
         title5:"Smart Ring with Smart Activity Tracking, Heart Rate Monitoring, Smart Touch Control, Smart Charging",
         bgcolor:"black",
-        color:"white"
+        color:"white",
+        cat:"all"
 
     },
     {
@@ -109,7 +110,7 @@ export const lapycatgo=[
     {
         id:"651fff1d443eb629a4e514d7",
         img:Applelaptop,
-        title:"SmartPhone Apple 2020 MacBook Air M1 Chip MGN63HN/A Laptop (8GB RAM/ 256GB SSD) ",
+        title:"Apple 2020 MacBook Air M1 Chip MGN63HN/A Laptop (8GB RAM/ 256GB SSD) ",
         vsp:"VSP",
         price:" ₹ 81,990",
         MRP:"MRP",
@@ -153,7 +154,7 @@ export const lapycatgo=[
      
     },
     {
-        id:5,
+        id:"65325ab16f763550904c6cf0",
         img:hp,
         title:" HP 14s-dr3002TU Laptop (Intel Celeron N4500 Processor / 8 GB RAM/ 512 GB SSDs) ",
         vsp:"VSP",
@@ -164,7 +165,7 @@ export const lapycatgo=[
         tag:"No Cost EMI | Standard EMI From ₹ 1550"
     },
     {
-        id:6,
+        id:"653259ca6f763550904c6cec",
         img:aasus,
         title:"ASUS VivoBook S 15 OLED S3502ZA-L502WS Laptop (12th Gen Core i5/16GB RAM / 512GB SSD )",
         vsp:"VSP",
@@ -214,7 +215,7 @@ export const earbuds=[
         tag:" Standard EMI From ₹ 9018"
     },
     {
-        id:4,
+        id:"65325b8f6f763550904c6cf4",
         img:earbuds4,
         title:"  boAt Airdopes 163 Earbuds with Massive Playback of Up To 17 Hour, IPX5 Water & Sweat Resistance  ",
         vsp:"VSP",
@@ -226,7 +227,7 @@ export const earbuds=[
      
     },
     {
-        id:5,
+        id:"65325b166f763550904c6cf2",
         img:earbuds5,
         title:"OnePlus Nord Buds 2 with Active Noise Cancellation, 12.4mm dynamic drive, IP55 Rated Earbuds,",
         vsp:"VSP",
@@ -237,7 +238,7 @@ export const earbuds=[
         tag:" Standard EMI From ₹ 1550"
     },
     {
-        id:6,
+        id:"65325b166f763550904c6cf2",
         img:earbuds6,
         title:"boAt Nirvana 525 ANC Bluetooth Neckband with 11mm Audio Drivers, Voice Assistant",
         MRP:"MRP",
@@ -253,7 +254,7 @@ export const earbuds=[
 
 export const smartphone=[
     {
-        id:1,
+        id:"65340a5af5f6432a8577cceb",
         img:smart1,
         title:"Apple iPhone 14 (128 GB Storage, Starlight) ",
         vsp:"VSP",
@@ -264,7 +265,7 @@ export const smartphone=[
         tag:" Standard EMI From ₹ 3,442"
     },
     {
-        id:2,
+        id:"653256c66f763550904c6ce4",
         img:smart2,
         title:"OnePlus Nord CE 2 Lite 5G (6 GB RAM, 128 GB ROM, Blue Tide) ",
         vsp:"VSP",
@@ -276,7 +277,7 @@ export const smartphone=[
 
     },
     {
-        id:3,
+        id:"653257dc6f763550904c6ce8",
         img:smart3,
         title:" Oppo A78 (8 GB RAM, 128 GB ROM, Glowing Black)",
         vsp:"VSP",
@@ -287,7 +288,7 @@ export const smartphone=[
         tag:" Standard EMI From ₹ 921"
     },
     {
-        id:4,
+        id:"653257716f763550904c6ce6",
         img:smart4,
         title:"  Redmi 12C (6 GB RAM, 128 GB ROM, Lavender Purple)  ",
         vsp:"VSP",
@@ -299,7 +300,7 @@ export const smartphone=[
      
     },
     {
-        id:5,
+        id:"653251ee6f763550904c6cdc",
         img:smart5,
         title:"Oppo F23 5G (8 GB RAM, 256 GB ROM, Bold Gold)",
         vsp:"VSP",
@@ -310,7 +311,7 @@ export const smartphone=[
         tag:" Standard EMI From ₹ 3550"
     },
     {
-        id:6,
+        id:"653258646f763550904c6cea",
         img:smart6,
         title:"Redmi Note 12 5G (6 GB RAM, 128 GB ROM, Matte Black)",
         vsp:"VSP",

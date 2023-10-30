@@ -8,42 +8,83 @@ import '../Component/web.css'
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+import { Start, Success, Fail } from '../Redux/Allproductreducer'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
-function MixProduct({ cat, filters }) {
-    const [product,setProduct] = useState([]);
+
+
+function MixProduct({cat, filters }) {
+
+    const dispatch = useDispatch();
+    const data=useSelector((state)=>state.allData.AllData);
+    const {isFetching}=useSelector((state)=>state.allData);
+   
+    // console.log("data in initital product",data);
+    // console.log("fetch=====>",isFetching);
+
+
+
     const [filterproduct, setFilterProduct] = useState([]);
+    if(cat){
+    var catdata=cat.toLowerCase();
+    }
+    console.log("data in cat",catdata);
+    console.log("data in filters",filters);
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const res = await axios.get(cat ? `http://localhost:5000/api/product?category=${cat}` : "http://localhost:5000/api/product");
+    
 
-               setProduct(res.data);
-            }
-            catch (err) {
-                console.log(err);
+    const getProduct = async () => {
+        dispatch(Start())
+        try {
+
+            const res = await axios.get(catdata ? `http://localhost:5000/api/product/Find?type=${catdata}` : "http://localhost:5000/api/product/Find");
+
+                // console.log("this is how we do it ",res.data);
+            if(res.data.length>0){
+
+                dispatch(Success(res.data));
+
             }
         }
+        catch (err) {
+            
+            dispatch(Fail(err));
+        }
+    }
+
+    useEffect(() => {
+        dispatch(Success([]));
+      
         getProduct();
+
     }, [cat])
-    useEffect(()=>{
-        cat && setFilterProduct(
-            product.filter((item)=>
-            Object.entries(filters).every(([key,val])=>
-            item[key].includes(val)
-            )
+
+    useEffect(() => {
+        filters && setFilterProduct(
+            data.filter((item) =>
+                Object.entries(filters).every(([key, val]) =>
+               key==="color" ? item[key].includes(val) : item[key]<=val
+                )
             )
         )
-    },[product,cat,filters])
-
-
+    }, [data, cat, filters])
+   
     return (
         <Wrapper>
 
 
             <Container>
+          
                 {
-                    AllData.map((item) => (
+                    isFetching ?
+                    <Box sx={{ display:'flex', marginLeft:"42%"
+                    }}>
+                    <CircularProgress  style={{height:"200px",width:"200px", color:"blue"}}  />
+                    </Box>
+                    :
+                    filterproduct.map((item) => (
                         <Product value={item} />
                     )
 
@@ -59,17 +100,17 @@ const Container = styled.div`
 display: flex;
 flex-wrap:wrap;
 
+/* background-color: #2020bb; */
+width: 100vw;
 
 `;
 const Wrapper = styled.div`
 margin:2% 0;
 display:flex;
-/* justify-content: center; */
+/* background-color: red; */
+justify-content: center;
  flex-wrap: wrap;
  border-radius: 20px;
- 
- 
-
 
 `;
 

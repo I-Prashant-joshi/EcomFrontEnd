@@ -50,22 +50,22 @@ export default function Footer() {
               Follow Us
             </Typography>
             <Link href="https://www.facebook.com/" color="inherit">
-              <Facebook style={{color:"white",fontSize:"40px"}}/>
+              <Facebook style={{color:"#0088cc",fontSize:"40px"}}/>
             </Link>
             <Link
               href="https://www.instagram.com/"
               color="inherit"
               sx={{ pl: 1, pr: 1 }}
             >
-              <Instagram style={{color:"white",fontSize:"40px"}} />
+              <Instagram style={{color:"#c13584",fontSize:"40px"}} />
             </Link>
             <Link href="https://www.twitter.com/" color="inherit">
-              <Twitter style={{color:"white",fontSize:"40px"}} />
+              <Twitter style={{color:"#0b587e",fontSize:"40px"}} />
             </Link>
           </Grid>
         </Grid>
         <Box mt={5}>
-          <Typography variant="body2" color="white" align="center">
+          <Typography variant="body2" color="white"  align="center">
             {"Copyright © "}
             <Link color="inherit" href="https://your-website.com/">
               Your Website
@@ -78,3 +78,5 @@ export default function Footer() {
     </Box>
   );
 }
+
+

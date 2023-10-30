@@ -1,21 +1,36 @@
 import { AppBar, Box, Grid, Toolbar, Typography,TextField, Tabs, Tab, Button, useMediaQuery, useTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, useNavigation } from 'react-router-dom';
+import {Badge} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import DrawerBox from './Drawer';
+import logo from '../Images/logo-no-background.png'
+import { useSelector } from 'react-redux';
 
 function Navbar(){
+    const quantity=useSelector((state)=>state.cart.quantity);
+    const checkLogin=localStorage.getItem("login");
     
-    const Navdata=["Products","Contact"];
+    // console.log("your login data",checkLogin);
+    const Navdata=["Home","Products"];
     const navigate=useNavigate();
-    const drawdata=["Product","Contact Us"]
+    const drawdata=["Home","Products"]
    const theme=useTheme()
     const [value,setValue]=useState();
 
     const isMatch=useMediaQuery(theme.breakpoints.down('md'));
   
+    function handleTab(value){
+        if(value==="Home"){
+            navigate("/")
+        }
+        else if(value==="Products"){
+            navigate("/products")
+           
+        }
+    }
+   
    
     return(
         <AppBar xs={{placeitem:"center"}} sx={{backgroundColor:"#141414"}}>
@@ -36,43 +51,53 @@ function Navbar(){
                 </>
              
              ):    (<Grid sx={{placeItems:"center"}} container>
+
                     <Grid  item >
-                        <Typography sx={{marginRight:1}}>En</Typography>
+                    <Toolbar> <img src={logo} style={{height:"50px",width:"50px"}} /> </Toolbar>
+               
                     </Grid>
-                  
-                    <Grid item xs={3} md={1.5} >
-                    <TextField  size={'small'}  id="Pass" label="Search" variant="outlined"  fullWidth 
-                    sx={{
                     
-                       ".css-md26zr-MuiInputBase-root-MuiOutlinedInput-root" : {
-                        border: "2px solid white", color:"white"
-                       }
-                        }} />       
+                  
+                    <Grid item lg={3}  sm={3} md={4}  >
+                    <Typography sx={{fontSize:"30px"}} >𝐄𝐥𝐞𝐜𝐭𝐫𝐨𝐌𝐚𝐫𝐭</Typography>
+                        
                     </Grid>
-                    <Grid item xs={0.1}></Grid>
-                    <Grid item xs={3} ><SearchIcon></SearchIcon></Grid>
-                    <Grid item xs={3}>
-                    <Tabs indicatorColor="secondary"
-                            textColor="inherit"
-                            value={value}
-                            onChange={(e, val) => { setValue(val) }}>
+                    
+                   
+
+                    { checkLogin ? 
+                     <Grid item lg={7.95} md={6.5}   >
+                     <Box display="flex" justifyContent="flex-end">
+                     <Tabs indicatorColor="secondary" 
+                            textColor="white"
+                            onChange={(e,value)=>handleTab(value)}
+                         >
                            {Navdata.map((link,index)=>(
-                            <Tab color="white" key={index} label={link} />
+                            <Tab value={link} color="white"  key={index} label={link} />
                             ))}
                         </Tabs>
-                    </Grid>
-                    
-                    <Grid item xs={4}>
-                    <Box display="flex">
-                        <Button onClick={()=>{navigate("/Login")}} sx={{marginLeft:"auto",backgroundColor:"green"}} variant='contained'>
-                            Login
-                        </Button>
-                        <Button onClick={()=>{navigate("/Register")}} sx={{marginLeft:2,backgroundColor:"blue"}} variant='contained'>
-                           Register
-                        </Button>
-                        <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
-                    </Box>
-                    </Grid>
+                         <Badge badgeContent={quantity} color="success">
+                         <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
+                         </Badge>
+                     </Box>
+                     </Grid>
+                     :
+                     <Grid item sm={3} lg={7.95}  md={6} >
+                     <Box display="flex">
+                         <Button onClick={()=>{navigate("/Login")}} sx={{marginLeft:"auto",backgroundColor:"green"}} variant='contained'>
+                             Login
+                         </Button>
+                         <Button onClick={()=>{navigate("/Register")}} sx={{marginLeft:2,backgroundColor:"blue"}} variant='contained'>
+                            Register
+                         </Button>
+                         <Badge badgeContent={quantity} color="success">
+                         <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
+                         </Badge>
+                     </Box>
+                     </Grid>
+
+                    }
+                   
                    
                 </Grid>
                 )}

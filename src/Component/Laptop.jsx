@@ -8,7 +8,7 @@ const navigate=useNavigate();
         
 
            <Container >
-            <NavLink to={`product/${value.id}`}>
+            <NavLink to={`products/laptop/product/${value.id}`}>
              <Wrapper >
                 <Image src={value.img} />
                <Info>

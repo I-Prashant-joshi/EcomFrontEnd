@@ -45,27 +45,30 @@ console.log(filters);
                                         grey
                                 </Option>
                                 <Option>
+                                        green
+                                </Option>
+                                <Option>
                                        red
                                 </Option>
                             </Select>
-                            <Select name="price" onChange={handleFilter} >
+                            <Select name="vsprice" onChange={handleFilter} >
                             <Option disabled >
                                       Price
                                 </Option>
-                                <Option value="< 10000">
+                                <Option value="10000">
                                       Below 10,000 
                                 </Option>
-                                <Option value="< 30000">
+                                <Option value="15000">
+                                Below 15,000 
+                                </Option>
+                                <Option value="30000">
                                 Below 30,000 
                                 </Option>
-                                <Option value="< 60000">
+                                <Option value="60000">
                                 Below 60,000 
                                 </Option>
-                                <Option value="<100000">
+                                <Option  value="100000">
                                 Below 1,00,000 
-                                </Option>
-                                <Option  value="<150000">
-                                Below 1,50,000 
                                 </Option>
                             </Select>
                         </FilterProduct>
@@ -74,7 +77,8 @@ console.log(filters);
                   
                 <ClearIcon className="clearicon" onClick={()=>{navigate("/")}} style={{color:"white",marginRight:"50px"}}></ClearIcon>
             </Titlecontainer>
-       <MixProduct cat={catdata} filters={filters} />
+            
+                  <MixProduct cat={catdata} filters={filters} />
        <Footer />
 
        </Container>
@@ -85,6 +89,7 @@ const Container=styled.div`
 
 
 `;
+
 const Title=styled.h1`
 color:white;
 display: flex;
