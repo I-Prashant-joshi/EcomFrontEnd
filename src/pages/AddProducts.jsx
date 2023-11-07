@@ -17,6 +17,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import Fireapp from './firebase';
+import {Formik, Form} from 'formik';
+import * as Yup from 'yup';
+import FormikControl from '../FomikContainer/FormikControl';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function Copyright(props) {
@@ -40,73 +43,88 @@ const defaultTheme = createTheme();
 export default function Addproducts() {
 
     const Navigate=useNavigate();
-    const dispatch=useDispatch()
-    const {isFetching,error,currentUser}=useSelector((state)=>state.user);
+    const dispatch=useDispatch();
+    // const {isFetching,error,currentUser}=useSelector((state)=>state.user);
 
+    const sellerProduct=useSelector((state)=>state.sellerProduct);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    console.log("🚀 ~ file: AddProducts.jsx:46 ~ Addproducts ~ sellerProduct:", sellerProduct)
    
-    const title=data.get("title");
-    const type=data.get("type");
-    const vsprice=parseInt(data.get("vsprice"));
-    const mrprice=parseInt(data.get("mrprice"));
-    const off=data.get("off");
-    const tag=data.get("tag");
-    const color=data.get("color").split(",");
-    const img=data.get("img")
+    const initialValues={
+      title:"",
+      type:"",
+      vrprice:"",
+      mrprice:"",
+      off:"",
+      tag:"",
+      color:"",
+      img:""
+  }
+  const validationSchema=Yup.object({
+      // email:Yup.string().email().required(" Please Enter Email "),
+      title:Yup.string().required(" Please Fill the Product Title"),
+      type:Yup.string().required(" Please Fill the Type"),
+      vsprice:Yup.string().required(" Please Fill the vsprice"),
+      mrprice:Yup.string().required(" Please Fill the mrprice"),
+      tag:Yup.string().required(" Please Fill the tag"),
+      off:Yup.string().required(" Please Fill the off"),
+      color:Yup.string().required(" Please Fill the color"),
+      img:Yup.string().required(" Please Fill the img"),
+
+  });
+
+
+  const handleSubmit = (value) => {
 
     const Data={
-      title,
-      type,
-      img,
-      vsprice,
-      mrprice,
-      color,
-      off,
-      tag,
+      title:value.title,
+      type:value.type,
+      img:value.img,
+      vsprice:value.vsprice,
+      mrprice:value.mrprice,
+      color:value.color,
+      off:value.off,
+      tag:value.tag,
     }
+    console.log("🚀 ~ file: AddProducts.jsx:98 ~ handleSubmit ~ Data:", Data)
 // console.log(Data);
     Addproductsapi(dispatch,Data);
+    Navigate("/products")
   // console.log(img);
-    const Filename= img.name+new Date().getTime();
-    console.log(Filename);
-    const storage = getStorage(Fireapp);
-    const storageRef = ref(storage, Filename);
-    const uploadTask = uploadBytesResumable(storageRef, img);
+  //   const Filename= img.name+new Date().getTime();
+  //   console.log(Filename);
+  //   const storage = getStorage(Fireapp);
+  //   const storageRef = ref(storage, Filename);
+  //   const uploadTask = uploadBytesResumable(storageRef, img);
 
-    uploadTask.on('state_changed', 
-  (snapshot) => {
+  //   uploadTask.on('state_changed', 
+  // (snapshot) => {
     // Observe state change events such as progress, pause, and resume
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-        default:
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      console.log('File available at', downloadURL);
-    });
-  }
-);
- 
+//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     console.log('Upload is ' + progress + '% done');
+//     switch (snapshot.state) {
+//       case 'paused':
+//         console.log('Upload is paused');
+//         break;
+//       case 'running':
+//         console.log('Upload is running');
+//         break;
+//         default:
+//     }
+//   }, 
+//   (error) => {
+//     // Handle unsuccessful uploads
+//   }, 
+//   () => {
+//     // Handle successful uploads on complete
+//     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+//       console.log('File available at', downloadURL);
+//     });
+//   }
+// );
 
-   
-    
     // console.log("data in data=",Data);
  
   };
@@ -133,7 +151,99 @@ export default function Addproducts() {
           <Typography component="h1" variant="h4">
             Addproducts
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Formik 
+     initialValues={initialValues}
+     validationSchema={validationSchema}
+     onSubmit={handleSubmit} >
+    {
+        formik => 
+      
+        <Form style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="title" 
+           label="Product Title"
+          //  autocomplete="off"
+           placeholder="Enter ProductName" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="type" 
+           label="Type"
+          //  autocomplete="off"
+           placeholder="Enter Type" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="number" 
+           name="vsprice" 
+           label="vsprice"
+          //  autocomplete="off"
+           placeholder="Enter vsprice" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="number" 
+           name="mrprice" 
+           label="mrprice"
+          //  autocomplete="off"
+           placeholder="Enter mrprice" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="off" 
+           label="off"
+          //  autocomplete="off"
+           placeholder="Enter off" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="tag" 
+           label="tag"
+          //  autocomplete="off"
+           placeholder="Enter tag" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="color" 
+           label="Color"
+          //  autocomplete="off"
+           placeholder="Enter color" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="img" 
+           label="Image Url"
+          //  autocomplete="off"
+           placeholder="Enter Image url " />
+           </Box>
+           <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2}}
+              // disabled={isFetching}
+             >
+              Addproducts
+            </Button>
+           </Form>
+}
+</Formik>
+          {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -215,12 +325,12 @@ export default function Addproducts() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2}}
-              disabled={isFetching}
+              // disabled={isFetching}
              >
               Addproducts
             </Button>
            
-          </Box>
+          </Box> */}
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>

@@ -16,11 +16,15 @@ import Box from '@mui/material/Box';
 
 
 function MixProduct({cat, filters }) {
-
+  
     const dispatch = useDispatch();
     const data=useSelector((state)=>state.allData.AllData);
     const {isFetching}=useSelector((state)=>state.allData);
-   
+    const seller = localStorage.getItem("seller");
+    const sellerProduct= useSelector((state)=>state.sellerProduct.product);
+    console.log("🚀 ~ file: MixProduct.jsx:25 ~ MixProduct ~ sellerProduct:", sellerProduct)
+    
+
     // console.log("data in initital product",data);
     // console.log("fetch=====>",isFetching);
 
@@ -56,8 +60,10 @@ function MixProduct({cat, filters }) {
 
     useEffect(() => {
         dispatch(Success([]));
-      
+      if(seller==="false"){
         getProduct();
+      }
+       
 
     }, [cat])
 
@@ -74,9 +80,9 @@ function MixProduct({cat, filters }) {
     return (
         <Wrapper>
 
-
+{
+seller==="false" ?
             <Container>
-          
                 {
                     isFetching ?
                     <Box sx={{ display:'flex', marginLeft:"42%"
@@ -91,6 +97,19 @@ function MixProduct({cat, filters }) {
                     )
                 }
             </Container>
+            :
+            <Container>
+            {
+
+                sellerProduct.map((item,index) => (
+                    <Product value={item} index={index} />
+                )
+
+                )
+                
+            }
+        </Container>
+        }
         </Wrapper>
     )
 

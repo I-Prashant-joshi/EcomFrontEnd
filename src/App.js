@@ -33,6 +33,8 @@ function App() {
         <Route  path='/Addproducts' element={<Protected Component={Addproducts}  />} />
         <Route  path='/Cart' element={<Protected Component={Cart}  />} />
         <Route  path='/Login' element={<Protected Component={Login}  />} />
+        <Route  path='/AddProducts' element={<Protected Component={Addproducts}  />} />
+
         <Route  path='/Register' element= {<Register />} />
       
       </Routes>

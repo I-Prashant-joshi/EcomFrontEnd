@@ -29,7 +29,7 @@ console.log(filters);
     return(
         <Container>
        <Titlecontainer> 
-                <Title>ALL Categories
+                <Title>All Categories
                         <FilterProduct>
                             <Select name="color" onChange={handleFilter}>
                                 <Option disabled selected>

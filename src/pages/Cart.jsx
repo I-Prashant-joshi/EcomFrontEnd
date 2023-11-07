@@ -10,7 +10,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { useDispatch, useSelector } from "react-redux";
 import { removeCart } from "../Redux/Cart";
 import { useEffect, useState } from "react";
-
 import StripeCheckout from 'react-stripe-checkout';
 import { Navigate, useNavigate } from "react-router-dom";
 const key = "pk_test_51NxR0fSJpUEIePjqKjYE6Vaj5ipHtV7pkoQTgOJgPTeHeg6Or9bf2WYuLuH6E3o9XXQMeSrNlwI3zF34wnl0v5Sj00Uo2VqyLB";

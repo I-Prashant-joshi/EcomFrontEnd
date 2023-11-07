@@ -1,40 +1,86 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 // import {Mobile} from './Responsive';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { removeSellerProduct } from "../Redux/Seller";
+import { useDispatch } from "react-redux";
 
-
-function Product({value}){
+function Product({value,index}){
+console.log("🚀 ~ file: MixProductfetch.jsx:9 ~ Product ~ index:", index)
 const navigate=useNavigate();
+const dispatch=useDispatch();
+const seller= localStorage.getItem("isSeller");
 
     return(
         
+  <>
+       {
+        seller ==="true" ?
+        <Container >
+          <Wrapper >
+        {seller=="true" ?  <div >
+          <DeleteForeverIcon  onClick={()=>dispatch(removeSellerProduct(index))} sx={{ color:"red",marginLeft:"85%"}} ></DeleteForeverIcon>
+          </div>: null }  
 
-           <Container>
-            <NavLink to={`product/${value._id}`}>
-             <Wrapper >
-                <Image src={value.img} />
-               <Info>
-                    {value.title}
+             <Image src={value.img} style={{height:"170px"}} />
+            <Info>
+                 {value.title}
 
-                <Price>
-               <PriceItem> {value.vsp}</PriceItem> 
-               <PriceItem style={{color:"green"}}> { value.vsprice}</PriceItem> 
+             <Price>
+            <PriceItem> VSP </PriceItem> 
+            <PriceItem style={{color:"green"}}> { value.vsprice}</PriceItem> 
 
-                
-               </Price>
-               <Mrp>
-               <Item>{value.mrp}</Item>
-                <Item style={{color:"red"}}>{value.mrprice}</Item>
-                <Item style={{color:"green"}}>{value.off}</Item>
-               </Mrp>
-               
-               </Info>
-               <Tag>
-                {value.tag}
-               </Tag>
-             </Wrapper>
-             </NavLink>
-           </Container> 
+             
+            </Price>
+            <Mrp>
+            <Item>MRP</Item>
+             <Item style={{color:"red"}}>{value.mrprice}</Item>
+             <Item style={{color:"green"}}>{value.off}</Item>
+            </Mrp> 
+            
+            </Info>
+            <Tag>
+             {value.tag} 
+            </Tag>
+          </Wrapper>
+        </Container> 
+        :
+        <Container >
+        <NavLink to={`product/${value._id}`}>
+          <Wrapper >
+
+             <Image src={value.img} />
+            <Info>
+                 {value.title}
+
+             <Price>
+            <PriceItem> {value.vsp}</PriceItem> 
+            <PriceItem style={{color:"green"}}> { value.vsprice}</PriceItem> 
+
+             
+            </Price>
+            <Mrp>
+            <Item>{value.mrp}</Item>
+             <Item style={{color:"red"}}>{value.mrprice}</Item>
+             <Item style={{color:"green"}}>{value.off}</Item>
+            </Mrp> 
+            
+            </Info>
+            <Tag>
+             {value.tag} 
+            </Tag>
+            {/*  */}
+          
+           
+          </Wrapper>
+          </NavLink>
+         
+        </Container> 
+       }
+          
+
+
+           </>
     )
 
 }
@@ -50,6 +96,7 @@ background-color: white;
  transition : all 0.7s ease; 
  font-size: 14px;
  text-align: justify;
+ /* background-color: #abbfd2; */
  
 
 
@@ -61,6 +108,7 @@ const Container=styled.div`
  overflow: hidden;
  margin:50px auto;
  background-color: #929592;
+ 
  transition: all 0.5s ease;
  &:hover{
     z-index:999;
@@ -76,6 +124,7 @@ height: 200px;
 width: 100%;
 object-fit: contain;
 margin: 0 auto;
+
  
 `;
 const Info=styled.div`
@@ -117,8 +166,12 @@ font-weight: bold;
 padding: 10px;
 text-align: center;
 bottom: 0;
+/* background-color: red; */
 
 `;
+// const Remove=styled.div`
+// z-index: 999;
+// `
 
 
 

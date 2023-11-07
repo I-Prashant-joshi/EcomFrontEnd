@@ -1,52 +1,89 @@
 import React, { useState } from "react";
 //  import { styled } from "styled-components";
 import img from '../Images/back2.avif';
-import {Avatar ,Button, Checkbox, Grid, Paper, Stack, TextField, Typography} from '@mui/material';
+import {Avatar ,Button, Checkbox, Grid, Paper,Box, Stack, TextField, Typography} from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Registerapi } from "../Redux/apicall";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {Formik, Form} from 'formik';
+import * as Yup from 'yup';
+import FormikControl from '../FomikContainer/FormikControl';
 function Register(){
     const navigate=useNavigate();
     const dispatch=useDispatch();
-    const[username,setUsername]=useState("");
-    const[email,setEmail]=useState("");
-    const[password,setPassword]=useState("");
+  
    
-    const handleSubmit=async(e)=>{
-            e.preventDefault();
-            const data={
-                username,email,password
-            }
-            console.log(data);
-        if(!username || !email || !password)
-        {
-            alert("Please fill all data");
-        }    
-        else{
+    const initialValues={
+        username:"",
+        email:"",
+        password:"",
+        Checkbox:false
 
-          const registerData =await Registerapi(dispatch,data);
-            console.log("data from register",registerData);
-          if(registerData)
-            {
-            setUsername("");
-            setEmail("");
-            setPassword("");
-            navigate("/Login")
-            }
-           
+    }
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    const validationSchema=Yup.object({
+        username:Yup.string().required(" Please Fill the UserName ").matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+        email:Yup.string().email().required(" Please Enter Email "),
+        password:Yup.string().required(" Please Enter Password").min(4, 'Password is too short ').matches(passwordRules,"Password must meet the requirements (1 symbol, 1 uppercase, 1 lowercase, 1 digit)"),
+    });
+
+    const onSubmit=async(value) => {
+        console.log("🚀 ~ file: FormikContainer.jsx:9 ~ FormikContainer ~ value:", value); 
+
+        
+        const data={
+        username:value.username,
+        email:value.email,
+        password:value.password,
+        isSeller:value.Seller
+        }
+        console.log("🚀 ~ file: Register.jsx:38 ~ onSubmit ~ data:", data)
+        
+       if(!data)
+    {
+        alert("Please fill all data");
+    }    
+    else{
+
+      const registerData =await Registerapi(dispatch,data);
+        console.log("data from register",registerData);
+      if(registerData)
+        {
+        navigate("/Login");
         }
        
     }
+   
+        
+    }
+
+    // const handleSubmit=async(e)=>{
+    //         e.preventDefault();
+    //         const data={
+    //             username,email,password
+    //         }
+    //         console.log(data);
+    //     if(!username || !email || !password)
+    //     {
+    //         alert("Please fill all data");
+    //     }    
+    //     else{
+
+    //       const registerData =await Registerapi(dispatch,data);
+    //         console.log("data from register",registerData);
+    //       if(registerData)
+    //         {
+    //         setUsername("");
+    //         setEmail("");
+    //         setPassword("");
+    //         navigate("/Login")
+    //         }
            
-    const handleCancel=(e)=>{
-        e.preventDefault();
-  
-        setUsername("");
-        setEmail("");
-        setPassword("");
-      
-   }
+    //     }
+       
+    // }
+
     return(
         <Grid  style={{backgroundImage:`url(${img})`,height:"85vh",margin:"100px auto",backgroundRepeat:"no-repeat",backgroundSize:"cover"}} >
         <Grid sx={{margin:"0px auto"}} >
@@ -60,8 +97,58 @@ function Register(){
                     <Typography sx={{margin:"20px 0 40px 0"}}>
                         " Please fill this Form"
                     </Typography>
-                        <form onSubmit={handleSubmit} autoComplete="off" >
-                        <TextField id="username" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} label="username" variant="outlined"   fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}  />
+                      
+                        <Formik 
+     initialValues={initialValues}
+     validationSchema={validationSchema}
+     onSubmit={onSubmit} >
+    {
+        formik => 
+      
+        <Form style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <Box >
+           <FormikControl
+           control="input"
+           type="text" 
+           name="username" 
+           label="Username"
+           autocomplete="off"
+           placeholder="Enter Username" />
+           </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="email" 
+           name="email" 
+           label="Email"
+           placeholder="Enter your Email"
+           />
+          </Box>
+           <Box >
+           <FormikControl
+           control="input"
+           type="password" 
+           name="password" 
+           label="Password"
+           placeholder="Enter password"
+           />
+             </Box>
+             <Box sx={{display:"flex",alignItems:"center"}} >
+          
+              <FormikControl
+           control="Checkbox"
+           type="Checkbox" 
+           name="Seller"  />     I am a Seller
+          </Box>
+          <Stack direction="row" spacing={40}>
+                <Button onClick={() => formik.resetForm()} type="reset" variant="contained" color="error"  >Cancel</Button>
+                <Button type="submit" variant="contained" color="success">Register</Button>
+          </Stack> 
+
+        </Form>
+    }
+   </Formik>
+                        {/* <TextField id="username" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} label="username" variant="outlined"   fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}  />
                       
                         <TextField  id="email"  value={email} label="email" onChange={(e)=>setEmail(e.target.value)} variant="outlined"  fullWidth sx={{margin:"20px 0 25px 0","& .MuiInputLabel-root": {color:'white'},"& .MuiOutlinedInput-root": { "& > fieldset": { borderColor: "white" }}}}/>
 
@@ -73,9 +160,9 @@ function Register(){
                         <Stack direction="row" spacing={40}>
                             <Button type="Cancel" variant="contained" color="error" onClick={handleCancel} >Cancel</Button>
                             <Button type="submit" variant="contained" color="success">Register</Button>
-                        </Stack>
+                        </Stack> */}
 
-                        </form>
+                     
 
                </Paper>
         </Grid>

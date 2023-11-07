@@ -1,19 +1,30 @@
 import axios from "axios";
 import { loginFail, loginStart, loginSuccess } from "./UserRedux";
-
-export const Loginapi=async(dispatch,user)=>{
-        
+import { addSellerProduct } from "./Seller";
+export const Loginapi=async(dispatch,user,owner)=>{
+        // console.log("owner====>",owner);
         dispatch(loginStart());
         try{
             const res=await axios.post("http://localhost:5000/api/Auth/Login",user);
-            console.log("apidata==========",res.status);
+            console.log("apidata==========",res);
+            const seller=res.data.isSeller;
+            localStorage.setItem("seller",seller);
             if(res.status === 201){
                 const err ="invalidaUser"
                 return err
             }
+            else if(owner==="Buyer" && res.data.isSeller===true || owner==="Seller" && res.data.isSeller===false ){
+
+                console.log("Its a Buyer but isSeller is true");
+                const auth ="auth"
+                return auth
+                
+            }
+
 
            else if(res.status === 200){
             dispatch(loginSuccess(res.data));
+            localStorage.setItem("isSeller", res.data.isSeller);
             const code="valid"
             return code;
             }
@@ -49,11 +60,12 @@ export const Registerapi=async(dispatch,user)=>{
             alert("Username is already Registered ");
             return false;
         }
-        else  if(res.data.message === "email present")
+        else  if(res.data.message === "Email present")
         {
             alert("Email is already Registered ");
             return false;
         }
+
         else{
             alert("There is an issue with the server")
         }
@@ -69,19 +81,20 @@ export const Registerapi=async(dispatch,user)=>{
 }
 export const Addproductsapi=async(dispatch,product)=>{
         
-   
-    try{
-        
-        console.log("data in api",product);
-       
-        const res=await axios.post("http://localhost:5000/api/product/new",product);
-        console.log(res.data);
-        
-    }
-    catch(err){
-     console.log(err);
-            
-    }
+   dispatch(addSellerProduct(product))
 
- return false;
+    // try{
+        
+    //     console.log("data in api",product);
+       
+    //     const res=await axios.post("http://localhost:5000/api/product/new",product);
+    //     console.log(res.data);
+        
+    // }
+    // catch(err){
+    //  console.log(err);
+            
+    // }
+
+//  return false;
 }

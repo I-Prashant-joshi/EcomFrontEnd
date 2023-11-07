@@ -30,7 +30,13 @@ function Navbar(){
            
         }
     }
+    function handleSignout(){
+        localStorage.setItem("login",false);
+        navigate("/Login");
+    }
    
+    var tokenId=localStorage.getItem("isSeller");
+    console.log("🚀 ~ file: Navbar.jsx:39 ~ Navbar ~ tokenId======>:", tokenId)
    
     return(
         <AppBar xs={{placeitem:"center"}} sx={{backgroundColor:"#141414"}}>
@@ -58,15 +64,32 @@ function Navbar(){
                     </Grid>
                     
                   
-                    <Grid item lg={3}  sm={3} md={4}  >
+                    <Grid item lg={2}  sm={3} md={4}  >
                     <Typography sx={{fontSize:"30px"}} >𝐄𝐥𝐞𝐜𝐭𝐫𝐨𝐌𝐚𝐫𝐭</Typography>
                         
                     </Grid>
                     
                    
 
-                    { checkLogin ? 
-                     <Grid item lg={7.95} md={6.5}   >
+                    { checkLogin==="true"? 
+                    <>
+                    {
+                        tokenId === "true" ?
+                        
+                          <Grid item lg={4} md={3.5}   >
+                          <Button onClick={()=>{navigate("/AddProducts")}} sx={{marginLeft:"auto",backgroundColor:"green"}} variant='contained'>
+                                 Add Product
+                              </Button>
+                          </Grid>
+                          :   <Grid item lg={4} md={3.5}   >
+                        
+                          </Grid>
+
+                    }
+                   
+
+                     <Grid item lg={4.95} md={3.5}  >
+                      
                      <Box display="flex" justifyContent="flex-end">
                      <Tabs indicatorColor="secondary" 
                             textColor="white"
@@ -76,13 +99,17 @@ function Navbar(){
                             <Tab value={link} color="white"  key={index} label={link} />
                             ))}
                         </Tabs>
+                        <Button onClick={handleSignout} sx={{marginLeft:2,color:"red"}} variant='Standard'>
+                            SignOut
+                         </Button>
                          <Badge badgeContent={quantity} color="success">
                          <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
                          </Badge>
                      </Box>
                      </Grid>
+                     </>
                      :
-                     <Grid item sm={3} lg={7.95}  md={6} >
+                     <Grid item sm={3} lg={8.95}  md={6} >
                      <Box display="flex">
                          <Button onClick={()=>{navigate("/Login")}} sx={{marginLeft:"auto",backgroundColor:"green"}} variant='contained'>
                              Login
@@ -90,9 +117,9 @@ function Navbar(){
                          <Button onClick={()=>{navigate("/Register")}} sx={{marginLeft:2,backgroundColor:"blue"}} variant='contained'>
                             Register
                          </Button>
-                         <Badge badgeContent={quantity} color="success">
+                         {/* <Badge badgeContent={quantity} color="success">
                          <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
-                         </Badge>
+                         </Badge> */}
                      </Box>
                      </Grid>
 
