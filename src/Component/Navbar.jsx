@@ -1,13 +1,12 @@
-import { AppBar, Box, Grid, Toolbar, Typography,TextField, Tabs, Tab, Button, useMediaQuery, useTheme } from '@mui/material';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { AppBar, Box, Grid, Toolbar, Typography, Tabs, Tab, Button, useMediaQuery, useTheme } from '@mui/material';
+import { useNavigate, } from 'react-router-dom';
 import {Badge} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import DrawerBox from './Drawer';
 import logo from '../Images/logo-no-background.png'
 import { useSelector } from 'react-redux';
-
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function Navbar(){
     const quantity=useSelector((state)=>state.cart.quantity);
     const checkLogin=localStorage.getItem("login");
@@ -39,11 +38,11 @@ function Navbar(){
     return(
         <AppBar xs={{placeitem:"center"}} sx={{backgroundColor:"#141414"}}>
             <Toolbar >
-             {isMatch?(<>
+             {isMatch?(
+                <>
                <DrawerBox  data={drawdata} /> 
-               <Grid item lg={4.95} md={3.5}  >
                       
-                      <Box display="flex" justifyContent="flex-end">
+                      <Box display="flex" justifyContent="flex-end" alignItems={"center"}>
                       <Tabs indicatorColor="secondary" 
                              textColor="white"
                              onChange={(e,value)=>handleTab(value)}
@@ -52,24 +51,14 @@ function Navbar(){
                              <Tab value={link} color="white"  key={index} label={link} />
                              ))}
                          </Tabs>
-                         <Button onClick={handleSignout} sx={{marginLeft:2,color:"red"}} variant='Standard'>
-                             SignOut
-                          </Button>
+                       
                           <Badge badgeContent={quantity} color="success">
-                          <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:3,fontSize:"35px"}}/>
+                          <ShoppingCartCheckoutIcon onClick={()=>{navigate("/Cart")}} sx={{marginLeft:1,fontSize:"25px"}}/>
                           </Badge>
+                          <Button onClick={handleSignout} sx={{marginLeft:2,color:"red"}} variant='Standard'>
+                             <ExitToAppIcon />
+                          </Button>
                       </Box>
-                      </Grid>
-                <Box sx={{marginLeft:"auto",display:"flex"}}>
-                    <Button sx={{marginLeft:"auto",backgroundColor:"green"}} variant='contained'>
-                        Login
-                    </Button>
-                    <Button sx={{marginLeft:2,backgroundColor:"blue"}} variant='contained'>
-                       Register
-                    </Button>
-                    <ShoppingCartCheckoutIcon sx={{marginLeft:3,fontSize:"35px"}}/>
-                </Box>
-                
                 </>
              
              ):    (<Grid sx={{placeItems:"center"}} container>

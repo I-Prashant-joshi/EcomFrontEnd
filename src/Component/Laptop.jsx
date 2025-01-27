@@ -77,7 +77,7 @@ const Container=styled.div`
  overflow: hidden;
  margin: auto;
  background-color: #929592;
- ${Mobile({display:"flex",margin:"1px",overflow:"visible",height:"",width:"150px"})};
+ ${Mobile({display:"flex",margin:"1px",overflow:"visible",height:"",width:"150px", backgroundColor:"black" })};
 
 
 `;

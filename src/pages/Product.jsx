@@ -28,6 +28,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -41,7 +42,8 @@ const Transition = React.forwardRef(function Transition(
 
 function SingleProduct() {
   const [openbox, setOpenbox] = useState(false);
-  
+    const theme = useTheme()
+    const isMobile=useMediaQuery(theme.breakpoints.down('md'));
   const navigate=useNavigate();
 
   const handleClosebox = () => {
@@ -56,27 +58,13 @@ function SingleProduct() {
   const location = useLocation();
   const [quantity, setQuantity] = useState(1);
   const [productcolor, setProductcolor] = useState();
-
   const pathname = location.pathname.split("/");
-  console.log("your category", pathname);
-
   const id=pathname[pathname.length-1];
-  console.log("length===>", id);
-
-
-
   const pathid = location.pathname.split("/")[4];
-
 const stateData=useSelector((state)=>state.allData.AllData);
 
-
-  console.log("your pathid", pathid);
   const [product, setProduct] = useState([]);
-  console.log("data in product", product);
   const pr = JSON.parse(localStorage.getItem("productData"));
-  console.log("color", pr?.color);
-
-
 
   const getProduct = async () => {
     const res = await axios.get(
@@ -125,7 +113,7 @@ const stateData=useSelector((state)=>state.allData.AllData);
   console.log("productcolor=", productcolor);
 
   return (
-    <Container>
+    <Container >
       <Wrapper>
         <ImageContainer>
           <Image src={product.img} />
@@ -138,8 +126,8 @@ const stateData=useSelector((state)=>state.allData.AllData);
               <Vsp>{product.vsp}</Vsp> <Mrp>{product.mrp}</Mrp>
             </Pricetype>
             <Price>
-              <Vsp style={{ fontSize: "25px" }}>₹ {product.vsprice}</Vsp>{" "}
-              <Mrp style={{ fontSize: "18px", textDecoration: "line-through" }}>
+              <Vsp style={{ fontSize: isMobile ? "20px" : "25px" }}>₹ {product.vsprice}</Vsp>{" "}
+              <Mrp style={{ fontSize:  "18px", textDecoration: "line-through" }}>
                 ₹ {product.mrprice}
               </Mrp>
               <Off>8% off</Off>
@@ -170,10 +158,7 @@ const stateData=useSelector((state)=>state.allData.AllData);
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
-
                 >
-
-
                   <ShareIcon sx={{ fontSize: "40px", color: "#0088cc" }} />
                 </Share>
                 <Menu
@@ -285,7 +270,7 @@ const Info = styled.div`
   text-align: justify;
   box-sizing: border-box;
   padding: 50px 100px 20px;
-  ${Mobile({ padding: "25px", overflow: "hidden" })};
+  ${Mobile({marginTop:"20px", padding: "25px", overflow: "hidden" })};
 `;
 
 const Image = styled.img`
@@ -312,21 +297,20 @@ const ButtonContainer = styled.div`
   padding: 20px;
   background-color: #80808039;
 
-  ${Mobile({ width: "90%", margin: "10px", padding: "5px" })};
+  ${Mobile({ width: "100%", margin: "0px", padding: "5px" })};
 `;
 const Button = styled.button`
   padding: 12px 25px;
   cursor: pointer;
-
   box-sizing: border-box;
-  /* height: 40px;
-width: 150px; */
   font-size: 18px;
   font-weight: bold;
   justify-content: center;
   display: flex;
   align-items: center;
   border-radius: 7px;
+  ${Mobile({ padding: "10px 10px" })};
+
 `;
 const Pricetype = styled.div`
   display: flex;
@@ -335,7 +319,7 @@ const Pricetype = styled.div`
   margin-top: 50px;
   font-weight: 500;
   font-size: 20px;
-  ${Mobile({ width: "55%" })};
+  ${Mobile({ width: "55%",fontSize:"14px",marginTop:"20px" })};
 `;
 const Price = styled.div`
   display: flex;
@@ -376,6 +360,7 @@ const Count = styled.div`
   /* background-color: red; */
   justify-content: space-between;
   text-align: center;
+  ${Mobile({  marginTop: "10px" })};
 `;
 const Num = styled.div`
   display: flex;
@@ -385,6 +370,8 @@ const Num = styled.div`
   height: 35px;
   width: 35px;
   background-color: #706e6e58;
+  ${Mobile({ fontSize:"20px",width:"30px",height:"30px" })};
+
 `;
 const FirstDiv = styled.div`
   display: flex;
@@ -393,6 +380,8 @@ const FirstDiv = styled.div`
   justify-content: space-between;
   width: 100px;
   align-items: center;
+  ${Mobile({ marginTop:"10px" })};
+
 `;
 const SecDiv = styled.div`
   display: flex;
