@@ -38,6 +38,7 @@ const Wrapper=styled.div`
  background-color: white;
  transition: all 0.5s ease;
  &:hover{
+  ${Mobile({height:"155px",width:"155px"})}
  height: 370px;
  width: 370px;
  
@@ -49,7 +50,6 @@ ${Mobile({height:"150px",width:"150px", top:"50px",borderRadius:"20px",margin:"1
 const Container=styled.div`
  flex:1;
  
- /* background-color: #f39a9a; */
 `;
 const Image=styled.img`
 border-radius: 50px;

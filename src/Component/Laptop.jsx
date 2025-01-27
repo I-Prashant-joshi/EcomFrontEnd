@@ -1,41 +1,57 @@
 import { styled } from "styled-components";
 import {Mobile} from './Responsive';
 import { NavLink, useNavigate } from "react-router-dom";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 function Laptop({value}){
+  const theme = useTheme()
+  const isMobile=useMediaQuery(theme.breakpoints.down('md'));
 const navigate=useNavigate();
     return(
         
 
            <Container >
             <NavLink to={`products/laptop/product/${value.id}`}>
-             <Wrapper >
-                <Image src={value.img} />
-               <Info>
-                    {value.title}
+            {isMobile
+            ?
+            <Wrapper>
+          <Image src={value.img} />
+           <Info>
+                {value.title}
+          </Info>
+            <Price></Price>
+            </Wrapper>
+            :
+            <Wrapper >
+            <Image src={value.img} />
+           <Info>
+                {value.title}
 
-                <Price>
-                {value.vsp}
-                {value.price}
-               </Price>
-               <Mrp>
-                <Item>{value.MRP}</Item>
-                <Item>{value.mrp}</Item>
-                <Item>{value.off}</Item>
-               </Mrp>
-               
-               </Info>
-               <Tag>
-                {value.tag}
-               </Tag>
-             </Wrapper>
+            <Price>
+            {value.vsp}
+            {value.price}
+           </Price>
+           <Mrp>
+            <Item>{value.MRP}</Item>
+            <Item>{value.mrp}</Item>
+            <Item>{value.off}</Item>
+           </Mrp>
+           
+           </Info>
+           <Tag>
+            {value.tag}
+           </Tag>
+         </Wrapper>
+            
+            }
+          
+           
              </NavLink>
            </Container> 
     )
 
 }
 const Wrapper=styled.div`
-  flex:1;
  height: 350px;
  width: 310px;
  margin: auto;
@@ -49,11 +65,11 @@ background-color: white;
  &:hover{
  height: 340px;
  width: 285px;
- box-shadow:  0 0 0 6px #bdb2b2;
- font-size: 13px;
+ /* font-size: 13px; */
+ ${Mobile({height:"245px",width:"175px",})}
  }
 
- ${Mobile({height:"320px",width:"150px",margin:"0px 0px"})};
+ ${Mobile({height:"250px",width:"180px",})};
 
 `;
 const Container=styled.div`
@@ -61,7 +77,7 @@ const Container=styled.div`
  overflow: hidden;
  margin: auto;
  background-color: #929592;
- ${Mobile({display:"flex",margin:"1px",overflow:"visible",height:"320px",width:"150px"})};
+ ${Mobile({display:"flex",margin:"1px",overflow:"visible",height:"",width:"150px"})};
 
 
 `;
