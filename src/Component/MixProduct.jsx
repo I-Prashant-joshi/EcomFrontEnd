@@ -43,7 +43,7 @@ function MixProduct({cat, filters }) {
         dispatch(Start())
         try {
 
-            const res = await axios.get(catdata ? `http://localhost:5000/api/product/Find?type=${catdata}` : "http://localhost:5000/api/product/Find");
+            const res = await axios.get(catdata ? `https://ecombackend-ywqi.onrender.com/api/product/Find?type=${catdata}` : "https://ecombackend-ywqi.onrender.com/api/product/Find");
 
                 // console.log("this is how we do it ",res.data);
             if(res.data.length>0){

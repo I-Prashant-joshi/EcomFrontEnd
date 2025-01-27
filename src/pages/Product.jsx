@@ -80,7 +80,7 @@ const stateData=useSelector((state)=>state.allData.AllData);
 
   const getProduct = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/product/find/${id}`
+      `https://ecombackend-ywqi.onrender.com/api/product/find/${id}`
 
     );
     setProduct(res.data);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl="http://localhost:5000/api";
+const baseUrl="https://ecombackend-ywqi.onrender.com/api";
 
 export const publicrequest=axios.create({
     baseUrl:baseUrl,

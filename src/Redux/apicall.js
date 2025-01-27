@@ -5,7 +5,7 @@ export const Loginapi=async(dispatch,user,owner)=>{
         // console.log("owner====>",owner);
         dispatch(loginStart());
         try{
-            const res=await axios.post("http://localhost:5000/api/Auth/Login",user);
+            const res=await axios.post("https://ecombackend-ywqi.onrender.com/api/Auth/Login",user);
             console.log("apidata==========",res);
             const seller=res.data.isSeller;
             localStorage.setItem("seller",seller);
@@ -42,7 +42,7 @@ export const Registerapi=async(dispatch,user)=>{
    
     console.log("Data of User in Api",user);
     try{
-        const res=await axios.post("http://localhost:5000/api/Auth/Register",user);
+        const res=await axios.post("https://ecombackend-ywqi.onrender.com/api/Auth/Register",user);
      
         console.log("Response From server", res);
         console.log("Response------->", res.data.message);
@@ -87,7 +87,7 @@ export const Addproductsapi=async(dispatch,product)=>{
         
     //     console.log("data in api",product);
        
-    //     const res=await axios.post("http://localhost:5000/api/product/new",product);
+    //     const res=await axios.post("https://ecombackend-ywqi.onrender.com/api/product/new",product);
     //     console.log(res.data);
         
     // }

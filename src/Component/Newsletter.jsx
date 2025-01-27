@@ -22,7 +22,7 @@ function News() {
             username
         }
         
-        const res = await axios.post("http://localhost:5000/api/mail", maildata);
+        const res = await axios.post("https://ecombackend-ywqi.onrender.com/api/mail", maildata);
         // console.log("data after sending mail",res.status);
 
         if(res.status===200)
