@@ -1,49 +1,30 @@
 import { styled } from "styled-components";
-// import Navbar from "../Component/Navbar";
 import Footer from '../Component/Footer';
-// import applemac13 from '../Images/applemac13.jpg';
-// import AddIcon from '@mui/icons-material/Add';
-// import earbuds1 from '../Images/earbuds1.jpg';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-// import {Mobile} from '../Component/Responsive';
-import RemoveIcon from '@mui/icons-material/Remove';
 import { useDispatch, useSelector } from "react-redux";
 import { removeCart } from "../Redux/Cart";
-import { useEffect, useState } from "react";
 import StripeCheckout from 'react-stripe-checkout';
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useMediaQuery, useTheme } from "@mui/material";
+import { Mobile } from "../Component/Responsive";
 const key = "pk_test_51NxR0fSJpUEIePjqKjYE6Vaj5ipHtV7pkoQTgOJgPTeHeg6Or9bf2WYuLuH6E3o9XXQMeSrNlwI3zF34wnl0v5Sj00Uo2VqyLB";
 
 function Cart() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
-        const cartdata=useSelector((state)=>state.cart);
-
-
-    // var cartdata = JSON.parse(localStorage.getItem("carttty"));
-    console.log("data in cart ",cartdata);
-
+    const cartdata=useSelector((state)=>state.cart);
+  const theme = useTheme()
+    const isMobile=useMediaQuery(theme.breakpoints.down('md'));
     return (
         <Container>
-            {/* <Navbar /> */}
             <Wrapper>
                 <Title>
                     Your Bag
                 </Title>
                 <Top>
                     <TopButton onClick={()=>navigate("/products")}>Continue Shopping</TopButton>
-
                     <Toptexts>
-                        {/* <TopText>
-                            Shopping Bag(2)
-                        </TopText>
-                        <TopText>
-                            Shopping Whishlist(0)
-                        </TopText> */}
                     </Toptexts>
-
-                    {/* <TopButton type="right"></TopButton> */}
-
                 </Top>
                 <Bottom>
                     <Info>
@@ -55,21 +36,34 @@ function Cart() {
                                     <Details>
                                         
                                         <Pname><b> Product :</b> {data.title} </Pname>
+                                        {
+                                            !isMobile &&
                                         <Pid><b>ID:</b>{data._id}</Pid>
-                                        <Pcolor><b> Color:    </b> <ProductColor color={data.productcolor} /> </Pcolor>
+                                        }
+                                        <Pcolor><b> Color:    </b> <ProductColor color={data.productcolor} />
+                                         </Pcolor>
+                                         {
+                                            isMobile &&
+                                         <PQuantity>
+                                            <span><b>Quantity</b>: {data.quantity}</span>
+                                            <span style={{marginBottom:"10px"}}><b>Price</b>: {data.vsprice}</span>
+                                         </PQuantity>
+                                        }
 
                                     </Details>
                                 </ProductDetail>
-                                <PriceDetail>
+                                {
+                                    !isMobile &&
+                                    <PriceDetail>
                                     <ProductPriceContainer>
-                                       
                                         <ProductAmount>{data.quantity}</ProductAmount>
-
                                     </ProductPriceContainer>
                                     <ProductPrice>
                                         ₹ {data.vsprice}
                                     </ProductPrice>
                                 </PriceDetail>
+                                }
+                               
                                       <RemoveButon>
                                           <DeleteForeverIcon sx={{color:"grey"}} onClick={()=>{dispatch(removeCart(index))}} ></DeleteForeverIcon>
                                        </RemoveButon>
@@ -77,7 +71,6 @@ function Cart() {
                         )
                         )
                         }
-                        <Hr />
 
                     </Info>
                     <Summary>
@@ -111,7 +104,6 @@ function Cart() {
                             </StripeCheckout>
                         </BtnContainer>
                     </Summary>
-
                 </Bottom>
             </Wrapper>
             <Footer />
@@ -136,6 +128,8 @@ display: flex;
 align-items:center;
 justify-content: space-between;
 padding: 20px;
+${Mobile({padding:"10px 0px"})};
+
 `;
 const TopButton = styled.button`
 padding:10px;
@@ -158,9 +152,11 @@ margin: 0 10px;
 const Bottom = styled.div`
 display: flex;
 justify-content: space-between;
+${Mobile({flexDirection: "column",})};
 `;
 const Info = styled.div`
 flex:3;
+
 `;
 const Summary = styled.div`
 flex:1;
@@ -173,6 +169,7 @@ position: relative;
 const Product = styled.div`
 display: flex ;
 justify-content: space-between;
+
 `;
 const ProductDetail = styled.div`
 flex:2;
@@ -188,18 +185,32 @@ font-weight: 400;
 font-size: 23px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 justify-content:space-around;
+${Mobile({padding:"1px", fontSize:"16px",marginLeft:"10px",justifyContent:"start"})};
+
 `;
 const Pname = styled.span`
 margin-bottom: 10px;
+${Mobile({marginBottom:"5px"})};
+
+
 `;
 const Pcolor = styled.div`
 display: flex;
-
+${Mobile({marginBottom:"5px"})};
 align-items: center;
+`;
+
+
+const PQuantity = styled.div`
+display: flex;
+width:"full";
+justify-content:"space-between";
 `;
 
 const Pid = styled.span`
 margin-bottom: 10px;
+${Mobile({marginBottom:"5px"})};
+
 
 `;
 const PriceDetail = styled.div`
@@ -209,9 +220,12 @@ justify-content: center;
 flex-direction: column;
 align-items: center;
 font-size: 25px;
+
 `;
 const Image = styled.img`
 width:300px;
+${Mobile({ width:"100px",height:"120px"})};
+
 `;
 const ProductColor = styled.div`
 height: 20px;
@@ -225,6 +239,8 @@ const ProductPriceContainer = styled.div`
 display: flex;
 align-items: center;
 padding:20px;
+${Mobile({padding:"5px"})};
+
 
 
 `;
@@ -235,6 +251,8 @@ margin:10px;
 const ProductPrice = styled.div`
 font-weight:bold;
 font-size: 30px;
+${Mobile({fontSize:"20px"})};
+
 `;
 
 const Hr = styled.hr`
@@ -248,14 +266,20 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span`
  margin: 30px 0;
  font-size: 25px;
+ ${Mobile({fontSize:"20px"})};
+
+
 `;
 const SummaryItemPrice = styled.span`
  font-size: 25px;
  margin: 30px 0;
+${Mobile({fontSize:"20px"})};
+
 `;
 const SummaryTitle = styled.h1`
  font-weight:400;
  text-align: center;
+${Mobile({fontSize:"2rem"})};
 
 `;
 const Button = styled.button`
@@ -268,15 +292,17 @@ const Button = styled.button`
 `;
 const BtnContainer = styled.div`
   text-align: center;
-  position: absolute;
   bottom:0;
-
   width: 100%;
   
 `;
 const RemoveButon = styled.div`
     background-color: "red";
     width: 100px;
+${Mobile({width:"10px"})};
+
+
+    
 `
 
 export default Cart;
